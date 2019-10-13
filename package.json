@@ -1,0 +1,17 @@
+{
+  "name": "maths-elo-api",
+  "version": "1.0.0",
+  "description": "maintains a database of ratings for question types in the maths-elo project",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "author": "Samir Betmouni",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.3"
+  }
+}
