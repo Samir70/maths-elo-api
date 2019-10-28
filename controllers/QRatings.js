@@ -33,9 +33,10 @@ exports.getAllRatings = (req, res, next) => {
 }
 
 exports.get1Rating = (req, res, next) => {
-    let db = new sqlite3.Database(fileName, (err)=>errCallback(err, 'get1Rating'));
+    const qType = req.query.qType || 'undefined qType';
+    //console.log('GET1RATING request ', qType)
+    let db = new sqlite3.Database(fileName, (err)=>errCallback(err, 'get1Rating for ', qType));
 
-    const qType = req.body.qType || 'undefined qType';
     db.get(get1RatingSQL, [qType], (err, row) => {
         if (err) {throw err}
         var found = row ? row.qType : 'nothing';
@@ -52,8 +53,7 @@ exports.get1Rating = (req, res, next) => {
 exports.updateRatings = (req, res, next) => {
     const category = req.body.category;
     const value = req.body.ratingValue || rating4unknownTypes;
-    const tryToInsertSQL = 'INSERT INTO qratings(qtype, rating) VALUES(?, ?)';
-    
+    //console.log('UPDATErATINGS', req.body, category);    
     let db = new sqlite3.Database(fileName, (err) => errCallback(err, 'updateRatings'));
     db.run(update1SQL, [category, value], (err)=> {
               if (err) {return console.log(err)}
