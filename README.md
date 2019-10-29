@@ -11,7 +11,7 @@ Here's a link to the [working math-elo app on Heroku](https://math-elo-api.herok
 ## If you want to run this app on your own computer:
 Clone the repo.
 
-Then you need to `npm install` for both the root directory (for the server) and in the client directory (for the UI).
+Then you need to `npm install` in both the root directory (for the server) and in the client directory (for the UI).
 It's easiest to start server and UI from differnt command lines. `npm start` is suitable for both.
 
 ## Tech stack
