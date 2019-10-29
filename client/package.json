@@ -11,7 +11,7 @@
     "react-scripts": "3.1.1",
     "redux": "^4.0.4"
   },
-  "homepage": "https://samir70.github.io./maths-elo",
+  "homepage": "https://math-elo-api.herokuapp.com",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
