@@ -1,0 +1,59 @@
+.App {
+  text-align: center;
+}
+
+.header {
+  background: lightskyblue;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  align-content: space-around;
+}
+
+.toggleClass-btn {
+  background: lightskyblue;
+  color: black;
+}
+
+.toggleClass-btn:hover {
+  background: lightgreen;
+}
+
+.user-rating {
+  background: rgb(135, 162, 250);
+  color: black;
+}
+
+.answerbox {
+  width:100px;
+}
+
+.quandaBlock-odd {
+  background: lightgreen;
+  display: flex;
+  justify-content: space-around;
+  margin: 5px 2px;
+  border-left: 5px solid darkgreen;
+}
+.quandaBlock-even {
+  background: lightseagreen;
+  display: flex;
+  justify-content: space-around;
+  margin: 5px 2px;
+  border-left: 5px solid darkblue;
+}
+
+.qBlock {
+  width: 70vw;
+}
+
+.aBlock {
+  width: 25vw;
+  color: red;
+}
+
+.revealBtn {
+  width: 25vw;
+  color: green;
+  font-size: 2em;
+}
