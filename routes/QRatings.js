@@ -1,5 +1,5 @@
 const express = require('express');
-const ratingsController = require('../controllers/QRatings');
+const ratingsController = require('../controllers/QRatings_PG');
 
 handleRatings = express.Router();
 
