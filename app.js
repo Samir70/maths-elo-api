@@ -1,29 +1,27 @@
 const express = require('express');
-const { Client } = require('pg');
+const cors = require('cors');
+const { pool } = require('./config');
 
 const handleRatings = require('./routes/QRatings');
 
-const port = process.env.PORT || 8080
+const getRatings = (request, response) => {
+    pool.query('SELECT * FROM qratings', (error, results) => {
+      if (error) { return console.log(error) }
+      response.status(200).json(results.rows)
+    })
+  }
 
-const client = new Client({
-    connectionString: process.env.DATABASE_URL,
-    ssl : true
-});
-
-client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
-    if (err) throw err;
-    for (let row of res.rows) {
-      console.log(JSON.stringify(row));
-    }
-    client.end();
-});
 
 const app = express();
-app.use(express.json())
-
+app.use(express.json());
+app.use(cors());
 if (process.env.NODE_ENV = 'production') {
     app.use(express.static('client/build'));
 }
-
 app.use('/qratings', handleRatings);
-app.listen(port);
+app.use('/test-db', getRatings)
+
+const port = process.env.PORT || 8080
+app.listen(port, ()=>{
+    console.log('App is listening to port ', port);
+});
