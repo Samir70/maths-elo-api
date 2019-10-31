@@ -1,8 +1,7 @@
 import { UPDATE_USER_ANSWER, USER_IS_CORRECT, USER_IS_WRONG, TOGGLE_CLASS } from './actions';
 import GetNewQ from '../NewQs/GetNewQ';
 
-const newQ = GetNewQ('Vocab', '');
-newQ.QRating = 1500;
+const newQ = GetNewQ('', '');
 const initialState = {
     userRating: 1500,
     quAndA: newQ,

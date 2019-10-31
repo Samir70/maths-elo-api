@@ -27,26 +27,21 @@ const Question = ({
             const newQ = GetNewQ('', '');
             var [newUserRating, newQuAndARating] = NewRatings(userRating, quAndA.QRating||1500, 1, 1);
             //console.log('QType, QRating, old, new:', quAndA.QType, quAndA.QRating, newQuAndARating);
-            const toGet = {qType : newQ.QType};
-            axios.get('/qratings/get1rating', {params:toGet})
-            .then(res => {
-                console.log(res.data);
-                newQ.QRating = res.data.rating;
-                UserIsCorrect(newUserRating, newQ);
-            })
-            .catch(err => console.log(err))
+            UserIsCorrect(newUserRating, newQ);
         } else {
             [newUserRating, newQuAndARating] = NewRatings(userRating, 1500, 0, 1);
             //console.log('QType, QRating, old, new:', quAndA.QType, quAndA.QRating, newQuAndARating);
             UserIsWrong(newUserRating, userAnswer, newQuAndARating)
         }
-        const toPost = {
-            category: quAndA.QType,
-            ratingValue: newQuAndARating
-        }
-        axios.post('/qratings/new-data', toPost)
-          .then(res => console.log(res))
-          .catch(err => console.log(err));
+        if (quAndA.QType !== 'giveDefault') {
+            const toPost = {
+                category: quAndA.QType,
+                ratingValue: newQuAndARating
+            }
+            axios.post('/qratings/new-data', toPost)
+              .then(res => console.log(res))
+              .catch(err => console.log(err));
+        } else {console.log('Did not post about default Q')}
     }
 
     const wrongAnswerList = wrongAnswers.map((x, i) => 
