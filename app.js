@@ -2,7 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const { pool } = require('./config');
 
-const handleRatings = require('./routes/QRatings');
+const handleRatingsPG = require('./routes/QRatings_PG');
+const handleRatingsLite = require('./routes/QRatings');
 
 const getRatings = (request, response) => {
     pool.query('SELECT * FROM qratings', (error, results) => {
@@ -18,7 +19,13 @@ app.use(cors());
 if (process.env.NODE_ENV = 'production') {
     app.use(express.static('client/build'));
 }
-app.use('/qratings', handleRatings);
+//console.log(process.env.NODE_ENV, process.env.PORT);
+
+if (process.env.PORT) {
+  app.use('/qratings', handleRatingsPG);
+} else {
+  app.use('/qratings', handleRatingsLite)
+}
 app.use('/test-db', getRatings)
 
 const port = process.env.PORT || 8080
