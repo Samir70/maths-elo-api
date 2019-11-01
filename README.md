@@ -4,7 +4,9 @@ The general aim for this is to have the computer ask maths questions on a variet
 I aim to allow the user to be able to select questions (by subject or difficulty). And the computer can also select questions (to review a topic and also to challenge the user with questions they haven't seen before.) Many questions will also have links to online resources (BBC bitesize, for one). 
 
 ## So far: this is as far as I've got!
-There is a user interface. It began on the [Maths ELO repository](https://github.com/Samir70/maths-elo), which was copied to this repo's client folder. That repo probably won't change anymore. In this copy: still only has a few questions, the user rating changes properly but is not saved between sessions. The question ratings are saved to a sqlite3 database. This works great on a home computer, but (hosted on Heroku) it won't persist data when the dyno gets reset. All I need to do is find another place to host my database. 
+There is a user interface. It began on the [Maths ELO repository](https://github.com/Samir70/maths-elo), which was copied to this repo's client folder. That repo probably won't change anymore. In this copy: still only has a few questions, the user rating changes properly but is not saved between sessions. 
+
+The question ratings are saved to a database. When working as a developer, the data is saved locally to a sqlite3 database. This works great on a home computer, but (hosted on Heroku) it won't persist data when the dyno gets reset. So, on Heroku, the data is saved to a postgresql database. So that is two different databases. Not perfect, but it will do for now. And it means there are no special passwords or anything for developers to work locally on their own additions. Development wise... The client (react app) knows nothing about these two systems. It sends the same requests they get dealt with differently by the Node-app.
 
 Here's a link to the [working math-elo app on Heroku](https://math-elo-api.herokuapp.com/). The api is also available on that URL, eg: here is the [list of question types](https://math-elo-api.herokuapp.com/qratings/all) ordered by rating.
 
@@ -15,9 +17,9 @@ Then you need to `npm install` in both the root directory (for the server) and i
 It's easiest to start server and UI from differnt command lines. `npm start` is suitable for both.
 
 ## Tech stack
-Main app: React and Redux
-Backend: Node and Express
-Database: sqlite3
+#### Main app: React and Redux
+#### Backend: Node and Express
+#### Database: sqlite3 and postgresql
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
