@@ -29,7 +29,7 @@ const Question = ({
             //console.log('QType, QRating, old, new:', quAndA.QType, quAndA.QRating, newQuAndARating);
             UserIsCorrect(newUserRating, newQ);
         } else {
-            [newUserRating, newQuAndARating] = NewRatings(userRating, 1500, 0, 1);
+            [newUserRating, newQuAndARating] = NewRatings(userRating, quAndA.QRating||1500, 0, 1);
             //console.log('QType, QRating, old, new:', quAndA.QType, quAndA.QRating, newQuAndARating);
             UserIsWrong(newUserRating, userAnswer, newQuAndARating)
         }
