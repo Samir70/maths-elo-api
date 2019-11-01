@@ -58,7 +58,7 @@ const Question = ({
                     onChange={changeHandler} />
             </form>
             {wrongAnswerList}
-            <p>the question has a rating of {quAndA.QRating}</p>
+            <p>the question has a rating of {quAndA.QRating || '????'}</p>
         </div>
     )
 }
