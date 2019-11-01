@@ -24,10 +24,14 @@ const GetNewQ = (QType, subQType) => {
     .then(res => {
       console.log(res.data);
       newQ.QRating = res.data.rating;
+      return newQ;
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      console.log('getting rating for ', newQ.QType, err);
+      newQ.QRating = 1345;
+      return newQ;
+    });
   
-  return newQ;
 }
 
 export default GetNewQ;
