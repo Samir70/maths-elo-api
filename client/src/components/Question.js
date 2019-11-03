@@ -5,9 +5,9 @@ import { UpdateUserAnswer, UserIsCorrect, UserIsWrong } from '../Reducers/action
 import GetNewQ from '../NewQs/GetNewQ';
 import NewRatings from '../Ratings/Ratings';
 
-const Question = ({ 
-            quAndA, userAnswer, userRating, wrongAnswers, 
-            UpdateUserAnswer, UserIsCorrect, UserIsWrong }) => {
+const Question = ({
+    quAndA, userAnswer, userRating, wrongAnswers,
+    UpdateUserAnswer, UserIsCorrect, UserIsWrong }) => {
     const changeHandler = (e) => {
         UpdateUserAnswer(e.target.value);
     }
@@ -17,19 +17,25 @@ const Question = ({
         // converting to Number will do this
         // but take care if questions types are included that need a string as an answer
         switch (quAndA.answerFormat) {
-            case 'string' : {
-                var userIsCorrect = userAnswer.toLowerCase() === quAndA.a.toLowerCase(); 
+            case 'string': {
+                var userIsCorrect = userAnswer.toLowerCase() === quAndA.a.toLowerCase();
                 break
             }
             default: userIsCorrect = Number(userAnswer) === Number(quAndA.a)
         }
-        if (userIsCorrect) { 
-            const newQ = GetNewQ('', '');
-            var [newUserRating, newQuAndARating] = NewRatings(userRating, quAndA.QRating||1500, 1, 1);
-            //console.log('QType, QRating, old, new:', quAndA.QType, quAndA.QRating, newQuAndARating);
-            UserIsCorrect(newUserRating, newQ);
+        if (userIsCorrect) {
+            var [newUserRating, newQuAndARating] = NewRatings(userRating, quAndA.QRating || 1500, 1, 1);
+            GetNewQ('', '')
+                .then(promiseMessage => {
+                    console.log('GetNewQ\'s promise:', promiseMessage);
+                    //newQ.QRating = res.data.rating;
+                    UserIsCorrect(newUserRating, promiseMessage);
+                })
+                .catch(err => {
+                    console.log('GetNewQ\'s error is:', err);
+                });
         } else {
-            [newUserRating, newQuAndARating] = NewRatings(userRating, quAndA.QRating||1500, 0, 1);
+            [newUserRating, newQuAndARating] = NewRatings(userRating, quAndA.QRating || 1500, 0, 1);
             //console.log('QType, QRating, old, new:', quAndA.QType, quAndA.QRating, newQuAndARating);
             UserIsWrong(newUserRating, userAnswer, newQuAndARating)
         }
@@ -39,13 +45,25 @@ const Question = ({
                 ratingValue: newQuAndARating
             }
             axios.post('/qratings/new-data', toPost)
-              .then(res => console.log(res))
-              .catch(err => console.log(err));
-        } else {console.log('Did not post about default Q')}
+                .then(res => console.log('Success while posting rating of Q', res))
+                .catch(err => console.log('Error while posting rating of Q', err));
+        } else { console.log('Did not post about default Q') }
     }
 
-    const wrongAnswerList = wrongAnswers.map((x, i) => 
+    const wrongAnswerList = wrongAnswers.map((x, i) =>
         <p key={i}>{x} was wrong</p>)
+
+    if (quAndA.QType === 'giveDefault') {
+        GetNewQ('', '')
+            .then(promiseMessage => {
+                console.log('GetNewQ in render has promise:', promiseMessage);
+                //newQ.QRating = res.data.rating;
+                UserIsCorrect(userRating, promiseMessage);
+            })
+            .catch(err => {
+                console.log('GetNewQ in render has error:', err);
+            });
+    }
 
     return (
         <div>
