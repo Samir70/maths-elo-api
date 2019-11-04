@@ -7,6 +7,7 @@ const newQ = {
 const initialState = {
     userRating: 1500,
     quAndA: newQ,
+    needNewRatedQ: true,
     userAnswer: '',
     wrongAnswers: [], 
     showClassRoom: false
@@ -17,6 +18,7 @@ const reducer = (state = initialState, action) => {
         case USER_IS_CORRECT : return {
             ...state, 
             quAndA:action.quAndA, 
+            needNewRatedQ: false,
             userRating:action.userRating,
             userAnswer:'', wrongAnswers:[]}
         case USER_IS_WRONG : return {

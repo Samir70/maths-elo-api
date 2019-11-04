@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { UpdateUserAnswer, UserIsCorrect, UserIsWrong } from '../Reducers/actions';
@@ -6,7 +6,7 @@ import GetNewQ from '../NewQs/GetNewQ';
 import NewRatings from '../Ratings/Ratings';
 
 const Question = ({
-    quAndA, userAnswer, userRating, wrongAnswers,
+    quAndA, userAnswer, userRating, wrongAnswers, needNewRatedQ,
     UpdateUserAnswer, UserIsCorrect, UserIsWrong }) => {
     const changeHandler = (e) => {
         UpdateUserAnswer(e.target.value);
@@ -25,6 +25,7 @@ const Question = ({
         }
         if (userIsCorrect) {
             var [newUserRating, newQuAndARating] = NewRatings(userRating, quAndA.QRating || 1500, 1, 1);
+            //need reducer to set needNewRatedQ to true
             GetNewQ('', '')
                 .then(promiseMessage => {
                     console.log('GetNewQ\'s promise:', promiseMessage);
@@ -53,17 +54,20 @@ const Question = ({
     const wrongAnswerList = wrongAnswers.map((x, i) =>
         <p key={i}>{x} was wrong</p>)
 
-    if (quAndA.QType === 'giveDefault') {
-        GetNewQ('', '')
-            .then(promiseMessage => {
-                console.log('GetNewQ in render has promise:', promiseMessage);
-                //newQ.QRating = res.data.rating;
-                UserIsCorrect(userRating, promiseMessage);
-            })
-            .catch(err => {
-                console.log('GetNewQ in render has error:', err);
-            });
-    }
+    useEffect(() => {
+        if (needNewRatedQ || quAndA.QType === 'giveDefault') {
+            GetNewQ('', '')
+                .then(promiseMessage => {
+                    console.log('GetNewQ in useEffect has promise:', promiseMessage);
+                    //newQ.QRating = res.data.rating;
+                    UserIsCorrect(userRating, promiseMessage);
+                })
+                .catch(err => {
+                    console.log('GetNewQ in useEffect has error:', err);
+                });
+        }
+    })
+
 
     return (
         <div>
@@ -76,7 +80,10 @@ const Question = ({
                     onChange={changeHandler} />
             </form>
             {wrongAnswerList}
-            <p>the question has a rating of {quAndA.QRating || '????'}</p>
+            {needNewRatedQ ? 
+              <p>Fetching the rating for a new question....</p> :
+              <p>the question has a rating of {quAndA.QRating || '????'}</p>
+            }
         </div>
     )
 }
@@ -84,6 +91,7 @@ const Question = ({
 const mapStateToProps = (state) => {
     return {
         quAndA: state.quAndA,
+        needNewRatedQ: state.needNewRatedQ,
         wrongAnswers: state.wrongAnswers,
         userAnswer: state.userAnswer,
         userRating: state.userRating
