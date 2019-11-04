@@ -1,4 +1,6 @@
-import { UPDATE_USER_ANSWER, USER_IS_CORRECT, USER_IS_WRONG, TOGGLE_CLASS } from './actions';
+import { UPDATE_USER_ANSWER, SET_NEW_Q, 
+    USER_IS_WRONG, USER_RATING_CHANGES, 
+    TOGGLE_CLASS, NEED_NEW_RATED_Q } from './actions';
 
 const newQ = { 
     q: "How many mathematicians does it take to change a light bulb?", 
@@ -14,16 +16,18 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
+    console.log('handling the action of type', action.type)
     switch (action.type) {
-        case USER_IS_CORRECT : return {
+        case NEED_NEW_RATED_Q : return {...state, needNewRatedQ:true}
+        // split update of rating and quandA
+        case USER_RATING_CHANGES: return {...state, userRating:action.userRating}
+        case SET_NEW_Q : return {
             ...state, 
             quAndA:action.quAndA, 
             needNewRatedQ: false,
-            userRating:action.userRating,
             userAnswer:'', wrongAnswers:[]}
         case USER_IS_WRONG : return {
             ...state,
-            userRating: action.userRating,
             wrongAnswers:[...state.wrongAnswers, action.wrongAnswer],
             userAnswer: '',
             quAndA: {...state.quAndA, QRating: action.newQuAndARating}

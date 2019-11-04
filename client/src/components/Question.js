@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { UpdateUserAnswer, UserIsCorrect, UserIsWrong } from '../Reducers/actions';
+import { 
+    UpdateUserAnswer, UserRatingChanges,
+    SetNewQ, UserIsWrong, NeedNewRatedQ } from '../Reducers/actions';
 import GetNewQ from '../NewQs/GetNewQ';
 import NewRatings from '../Ratings/Ratings';
 
 const Question = ({
     quAndA, userAnswer, userRating, wrongAnswers, needNewRatedQ,
-    UpdateUserAnswer, UserIsCorrect, UserIsWrong }) => {
+    UserRatingChanges, UpdateUserAnswer, SetNewQ, UserIsWrong, NeedNewRatedQ }) => {
     const changeHandler = (e) => {
         UpdateUserAnswer(e.target.value);
     }
@@ -25,20 +27,13 @@ const Question = ({
         }
         if (userIsCorrect) {
             var [newUserRating, newQuAndARating] = NewRatings(userRating, quAndA.QRating || 1500, 1, 1);
-            //need reducer to set needNewRatedQ to true
-            GetNewQ('', '')
-                .then(promiseMessage => {
-                    console.log('GetNewQ\'s promise:', promiseMessage);
-                    //newQ.QRating = res.data.rating;
-                    UserIsCorrect(newUserRating, promiseMessage);
-                })
-                .catch(err => {
-                    console.log('GetNewQ\'s error is:', err);
-                });
+            UserRatingChanges(newUserRating);
+            NeedNewRatedQ();
         } else {
             [newUserRating, newQuAndARating] = NewRatings(userRating, quAndA.QRating || 1500, 0, 1);
             //console.log('QType, QRating, old, new:', quAndA.QType, quAndA.QRating, newQuAndARating);
-            UserIsWrong(newUserRating, userAnswer, newQuAndARating)
+            UserRatingChanges(newUserRating);
+            UserIsWrong(userAnswer, newQuAndARating)
         }
         if (quAndA.QType !== 'giveDefault') {
             const toPost = {
@@ -60,7 +55,7 @@ const Question = ({
                 .then(promiseMessage => {
                     console.log('GetNewQ in useEffect has promise:', promiseMessage);
                     //newQ.QRating = res.data.rating;
-                    UserIsCorrect(userRating, promiseMessage);
+                    SetNewQ(promiseMessage);
                 })
                 .catch(err => {
                     console.log('GetNewQ in useEffect has error:', err);
@@ -98,4 +93,5 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { UpdateUserAnswer, UserIsCorrect, UserIsWrong })(Question);
+export default connect(mapStateToProps, { 
+    UpdateUserAnswer, UserRatingChanges, SetNewQ, UserIsWrong, NeedNewRatedQ })(Question);
