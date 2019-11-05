@@ -10,6 +10,24 @@ The question ratings are saved to a database. When working as a developer, the d
 
 Here's a link to the [working math-elo app on Heroku](https://math-elo-api.herokuapp.com/). The api is also available on that URL, eg: here is the [list of question types](https://math-elo-api.herokuapp.com/qratings/all) ordered by rating.
 
+## Aims for the project
+### Questions
+* Obviously: more questions
+* It should be possible to save questions, to bookmark or link them
+* The question providers are not pure functions. Possibly refactor so that the random numbers they need are passed to them as parameters.
+* Help for users who do not already know the topic. This can be with links to BBC bitesize or with a dedicated page on the website.
+* Users can suggest topics -- possibly with a Patreon donation
+
+### GUI
+* Responsive GUI, so it works better on mobiles
+* Clearer pointer to answer format. When answer requires hr, min , sec these should be in input boxes with placeholders/context labels
+* Some of the vocab questions would be better with the answer as a missing word in the sentence
+
+### User data
+* User login, with password
+* Data for each user on which questions they tend to get right or wrong. This should be displayed for the user in a heat map.
+* Longterm: the computer should analyse this data in order to figure out what a student should learn next. If they are working on Pythagoras, but are struggling, then the computer should look at the difference between what a struggling student knows and those who manage Pythagoras. Gaps in knowledge should be filled. Some of these knowledge dependencies will be obvious, and they could be programmed by a human. But I want the computer to learn to be a better task-master to improve how students learn.
+
 ## If you want to run this app on your own computer:
 Clone the repo.
 
