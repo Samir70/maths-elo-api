@@ -5,21 +5,9 @@
 .header {
   background: lightskyblue;
   color: white;
-  display: flex;
-  justify-content: space-around;
-  align-content: space-around;
 }
 
-.toggleClass-btn {
-  background: lightskyblue;
-  color: black;
-}
-
-.toggleClass-btn:hover {
-  background: lightgreen;
-}
-
-.user-rating {
+.userVSquestion {
   background: rgb(135, 162, 250);
   color: black;
 }
@@ -56,4 +44,7 @@
   width: 25vw;
   color: green;
   font-size: 2em;
+}
+.revealBtn:hover {
+  border: 2px solid green;
 }

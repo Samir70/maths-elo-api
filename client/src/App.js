@@ -8,20 +8,20 @@ import ClassRoom from './components/ClassRoom';
 import { ToggleClass } from './Reducers/actions';
 import './App.css';
 
-const App = ({userRating, currentQType, showClassRoom, ToggleClass}) => {
+const App = ({ userRating, currentQ, showClassRoom, ToggleClass }) => {
   const giveme5Option = <Dropdown.Item onClick={ToggleClass}>5 in the Classroom</Dropdown.Item>;
   const rateMymathsOption = <Dropdown.Item onClick={ToggleClass}>Rate My Maths</Dropdown.Item>;
 
   return (
     <div className="App">
       <div className="header" >
-        <DropdownButton id="dropdown-variants-info" title="Menu" >
+        <DropdownButton id="dropdown-variants-info" title="Maths ELO" className="appTitle" size="lg">
           {showClassRoom ? rateMymathsOption : giveme5Option}
         </DropdownButton>
-        <h1>Maths R&R -- rate and review your maths</h1>
-        <p className="user-rating" >User Rating:<br /> {userRating}</p>
+        <p>Rate and review your maths</p>
+        <p className="userVSquestion" >Guest User ({userRating}) VS {currentQ.QType} ({currentQ.QRating}) </p>
       </div>
-      {showClassRoom ? <ClassRoom QType={currentQType} /> : <Question  />}
+      {showClassRoom ? <ClassRoom QType={currentQ.QType} /> : <Question />}
     </div>
   );
 }
@@ -31,10 +31,10 @@ const App = ({userRating, currentQType, showClassRoom, ToggleClass}) => {
 const mapStateToProps = (state) => {
   return {
     userRating: state.userRating,
-    currentQType: state.quAndA.QType,
+    currentQ: state.quAndA,
     showClassRoom: state.showClassRoom
   }
 }
 
 
-export default connect(mapStateToProps, {ToggleClass})(App);
+export default connect(mapStateToProps, { ToggleClass })(App);
