@@ -16,7 +16,7 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
-    console.log('handling the action of type', action.type)
+    console.log('handling the action ', action)
     switch (action.type) {
         case NEED_NEW_RATED_Q : return {...state, needNewRatedQ:true}
         // split update of rating and quandA

@@ -4,7 +4,7 @@ import axios from 'axios';
 import { 
     UpdateUserAnswer, UserRatingChanges,
     SetNewQ, UserIsWrong, NeedNewRatedQ } from '../Reducers/actions';
-import GetNewQ from '../NewQs/GetNewQ';
+import { GetNewQ, getQRating } from '../NewQs/GetNewQ';
 import NewRatings from '../Ratings/Ratings';
 
 const Question = ({
@@ -51,11 +51,12 @@ const Question = ({
 
     useEffect(() => {
         if (needNewRatedQ || quAndA.QType === 'giveDefault') {
-            GetNewQ('', '')
-                .then(promiseMessage => {
-                    console.log('GetNewQ in useEffect has promise:', promiseMessage);
-                    //newQ.QRating = res.data.rating;
-                    SetNewQ(promiseMessage);
+            var newQ = GetNewQ('', '');
+            //console.log('q.js, useEffect, newQ is: ', newQ);
+            getQRating(newQ.QType).then(promiseMessage => {
+                    //console.log('getQRating in useEffect has promise:', promiseMessage);
+                    newQ.QRating = promiseMessage;
+                    SetNewQ(newQ);
                 })
                 .catch(err => {
                     console.log('GetNewQ in useEffect has error:', err);
