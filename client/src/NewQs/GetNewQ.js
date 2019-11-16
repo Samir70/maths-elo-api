@@ -3,9 +3,10 @@ import axios from 'axios';
 import MetricConversionQ from './MetricConversion';
 import TimeConversionQ from './TimeConversion';
 import VocabQ from './VocabQ';
+import RatioQ from './Ratio';
 import { MultiplyNumberQ } from './NumberOperations';
-import { metricConversion, TimeConversion, MultiplyNumbers, Vocab } from './QTypes';
-const QTypes = [metricConversion, TimeConversion, MultiplyNumbers, Vocab];
+import { metricConversion, TimeConversion, MultiplyNumbers, Vocab, Ratio } from './QTypes';
+const QTypes = [metricConversion, TimeConversion, MultiplyNumbers, Vocab, Ratio];
 
 export const GetNewQ = (QType, subQType) => {
   //console.log('QType and subQType', QType, subQType)
@@ -16,6 +17,7 @@ export const GetNewQ = (QType, subQType) => {
     case MultiplyNumbers: { newQ = MultiplyNumberQ(subQType); break }
     case TimeConversion: { newQ = TimeConversionQ(subQType); break }
     case Vocab: { newQ = VocabQ(); break }
+    case Ratio: { newQ = RatioQ(subQType); break}
     default: return {
       q: "How many mathematicians does it take to change a light bulb?",
       a: "1", QType: 'giveDefault'
