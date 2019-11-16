@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { DropdownButton, Dropdown } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.css';
 
 import Question from './components/Question';
 import ClassRoom from './components/ClassRoom';
@@ -7,16 +9,15 @@ import { ToggleClass } from './Reducers/actions';
 import './App.css';
 
 const App = ({userRating, currentQType, showClassRoom, ToggleClass}) => {
-  const giveme5btn = <button 
-    className='toggleClass-btn'
-    onClick={ToggleClass} >Give me 5 in the class room</button>
-  const giveMeTestsbtn = <button 
-    className='toggleClass-btn'
-    onClick={ToggleClass} >Take me back to the test room</button>
+  const giveme5Option = <Dropdown.Item onClick={ToggleClass}>5 in the Classroom</Dropdown.Item>;
+  const rateMymathsOption = <Dropdown.Item onClick={ToggleClass}>Rate My Maths</Dropdown.Item>;
+
   return (
     <div className="App">
       <div className="header" >
-        {showClassRoom ? giveMeTestsbtn : giveme5btn }
+        <DropdownButton id="dropdown-variants-info" title="Menu" >
+          {showClassRoom ? rateMymathsOption : giveme5Option}
+        </DropdownButton>
         <h1>Maths R&R -- rate and review your maths</h1>
         <p className="user-rating" >User Rating:<br /> {userRating}</p>
       </div>
@@ -24,6 +25,8 @@ const App = ({userRating, currentQType, showClassRoom, ToggleClass}) => {
     </div>
   );
 }
+// used before dropdown menu implemented
+// {showClassRoom ? giveMeTestsbtn : giveme5btn }
 
 const mapStateToProps = (state) => {
   return {
