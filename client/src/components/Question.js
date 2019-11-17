@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { 
+import {
     UpdateUserAnswer, UserRatingChanges,
-    SetNewQ, UserIsWrong, NeedNewRatedQ } from '../Reducers/actions';
+    SetNewQ, UserIsWrong, NeedNewRatedQ
+} from '../Reducers/actions';
 import { GetNewQ, getQRating } from '../NewQs/GetNewQ';
 import NewRatings from '../Ratings/Ratings';
 import Keypad from '../components/Keypad';
@@ -55,10 +56,10 @@ const Question = ({
             var newQ = GetNewQ('', '');
             //console.log('q.js, useEffect, newQ is: ', newQ);
             getQRating(newQ.QType).then(promiseMessage => {
-                    //console.log('getQRating in useEffect has promise:', promiseMessage);
-                    newQ.QRating = promiseMessage;
-                    SetNewQ(newQ);
-                })
+                //console.log('getQRating in useEffect has promise:', promiseMessage);
+                newQ.QRating = promiseMessage;
+                SetNewQ(newQ);
+            })
                 .catch(err => {
                     console.log('GetNewQ in useEffect has error:', err);
                 });
@@ -68,20 +69,22 @@ const Question = ({
 
     return (
         <div>
-            <h2>{quAndA.q}</h2>
-            <form onSubmit={submitHandler}>
-                <input className="answerbox"
-                    type="text"
-                    name="answerbox"
-                    value={userAnswer}
-                    onChange={changeHandler} />
-                <button type="submit">Submit</button>
-            </form>
-            {wrongAnswerList}
-            <br />
-            {needNewRatedQ ? 
-              <p>Fetching the rating for a new question....</p> :
-              <Keypad />
+            <div id="quAndA">
+                <h2>{quAndA.q}</h2>
+                <form onSubmit={submitHandler}>
+                    <input className="answerbox"
+                        type="text"
+                        name="answerbox"
+                        value={userAnswer}
+                        onChange={changeHandler} />
+                    <button type="submit">Submit</button>
+                </form>
+                {wrongAnswerList}
+                <br />
+            </div>
+            {needNewRatedQ ?
+                <p>Fetching the rating for a new question....</p> :
+                <Keypad />
             }
         </div>
     )
@@ -97,5 +100,6 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { 
-    UpdateUserAnswer, UserRatingChanges, SetNewQ, UserIsWrong, NeedNewRatedQ })(Question);
+export default connect(mapStateToProps, {
+    UpdateUserAnswer, UserRatingChanges, SetNewQ, UserIsWrong, NeedNewRatedQ
+})(Question);

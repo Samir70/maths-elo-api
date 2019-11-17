@@ -32,6 +32,20 @@
   font-weight: bold;
 }
 
+@media only screen and (min-width:768px) {
+  #quAndA {
+    display: inline-block;
+    width:70vw;
+  }
+  .keypad {
+    display: inline-block;
+    width: 150px;
+  }
+  .keypadButton {
+    width: 45px;
+  }
+}
+
 .quandaBlock-odd {
   background: lightgreen;
   display: flex;
