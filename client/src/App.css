@@ -16,6 +16,22 @@
   width:100px;
 }
 
+.keypad {
+  display:block;
+  margin:auto;
+  background: lightblue;
+  width: 70vw;
+  min-width: 150px;
+}
+
+.keypadButton {
+  background: chocolate;
+  width: 20vw;
+  min-width: 45px;
+  margin:2px;
+  font-weight: bold;
+}
+
 .quandaBlock-odd {
   background: lightgreen;
   display: flex;
