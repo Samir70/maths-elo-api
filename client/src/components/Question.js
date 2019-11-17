@@ -6,6 +6,7 @@ import {
     SetNewQ, UserIsWrong, NeedNewRatedQ } from '../Reducers/actions';
 import { GetNewQ, getQRating } from '../NewQs/GetNewQ';
 import NewRatings from '../Ratings/Ratings';
+import Keypad from '../components/Keypad';
 
 const Question = ({
     quAndA, userAnswer, userRating, wrongAnswers, needNewRatedQ,
@@ -74,11 +75,13 @@ const Question = ({
                     name="answerbox"
                     value={userAnswer}
                     onChange={changeHandler} />
+                <button type="submit">Submit</button>
             </form>
             {wrongAnswerList}
+            <br />
             {needNewRatedQ ? 
               <p>Fetching the rating for a new question....</p> :
-              <p>the question has a rating of {quAndA.QRating || '????'}</p>
+              <Keypad />
             }
         </div>
     )

@@ -19,8 +19,7 @@ const App = ({ userRating, currentQ, showClassRoom, ToggleClass }) => {
           {showClassRoom ? rateMymathsOption : giveme5Option}
         </DropdownButton>
         <p>Rate and review your maths</p>
-        <p className="userVSquestion" >Guest User ({userRating}) VS 
-          {currentQ.QType} ({currentQ.QRating||'????'}) </p>
+        <p className="userVSquestion" >Guest User ({userRating}) VS {currentQ.QType} ({currentQ.QRating||'????'}) </p>
       </div>
       {showClassRoom ? <ClassRoom QType={currentQ.QType} /> : <Question />}
     </div>

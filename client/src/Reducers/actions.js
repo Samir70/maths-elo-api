@@ -4,6 +4,8 @@ export const USER_IS_WRONG = 'USER_IS_WRONG';
 export const USER_RATING_CHANGES = 'USER_RATING_CHANGES';
 export const TOGGLE_CLASS = 'TOGGLE_CLASS';
 export const NEED_NEW_RATED_Q = 'NEED_NEW_RATED_Q';
+export const KEYPAD_NUMBER = 'KEYPAD_NUMBER';
+export const KEYPAD_DELETE = 'KEYPAD_DELETE';
 
 export const UpdateUserAnswer = (newAnswer) => {
     return { type: UPDATE_USER_ANSWER, payload: newAnswer}
@@ -27,4 +29,12 @@ export const ToggleClass = () => {
 
 export const NeedNewRatedQ = () => {
     return {type: NEED_NEW_RATED_Q}
+}
+
+export const Keypad_number = (n) => {
+    return {type:KEYPAD_NUMBER, payload:n}
+}
+
+export const Keypad_delete = () => {
+    return {type:KEYPAD_DELETE}
 }
