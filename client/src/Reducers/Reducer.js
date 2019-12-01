@@ -13,6 +13,7 @@ const initialState = {
     needNewRatedQ: true,
     userAnswer: '',
     wrongAnswers: [], 
+    extraKeys4Pad: ['hrs','min', 'sec'],
     showClassRoom: false
 }
 
