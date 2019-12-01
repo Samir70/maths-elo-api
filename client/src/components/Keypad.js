@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { Keypad_number, Keypad_delete } from '../Reducers/actions';
 
-const Keypad = ({ Keypad_number, Keypad_delete }) => {
+const Keypad = ({ extraKeys, Keypad_number, Keypad_delete }) => {
     const buttons1_9 = [...'123456789'].map(x => <button
         onClick={() => Keypad_number(x)}
         className="keypadButton"
@@ -20,14 +20,23 @@ const Keypad = ({ Keypad_number, Keypad_delete }) => {
         onClick={() => Keypad_delete()}
         className="keypadButton"
         key='keypad-buttonDEL'>DEL</button>
+    const extraButtons = extraKeys.slice(0, 3).map(x => <button
+        onClick={() => Keypad_number(x)}
+        className="keypadButton"
+        key={'extra-keypad-button'+x}>{x}
+        </button>)
     return (
         <div className="keypad">
             <div>{buttons1_9.slice(0, 3)}</div>
             <div>{buttons1_9.slice(3, 6)}</div>
             <div>{buttons1_9.slice(6)}</div>
             <div>{button0}{buttonDP}{buttonDEL}</div>
+            {extraKeys.length > 0 ? extraButtons : ''}
         </div>
     )
 }
 
-export default connect(null, { Keypad_number, Keypad_delete })(Keypad);
+const mapStateToProps = (state) => {
+    return {extraKeys : state.extraKeys4Pad}
+}
+export default connect(mapStateToProps, { Keypad_number, Keypad_delete })(Keypad);

@@ -30,6 +30,7 @@ const TimeConversionQ = (subType) => {
     var sec = rnd(60), min = rnd(60), hr = rnd(24);
     switch (conversionPairs[subQType]) {
         case 'secMin' : {
+            if (min===0) {min++}
             var totalSec = hms2sec(0, min, sec);
             left =''+totalSec; right = min+'min '+sec+'sec';
             leftUnits = 'seconds'; rightUnits = 'minutes and seconds';
@@ -47,9 +48,9 @@ const TimeConversionQ = (subType) => {
     console.log(subQType);
     return forward ? 
         { q:'Convert '+left+leftUnits+' to '+rightUnits, 
-          a:right, QType:subQType, answerFormat:'string' } :
+          a:right, QType:subQType, answerFormat:'string', extraKeys:['hrs', 'min', 'sec'] } :
         { q:'Convert '+right+' to '+leftUnits,
-          a:left, QType:subQType, answerFormat:'number' }
+          a:left, QType:subQType, answerFormat:'number', extraKeys:['hrs', 'min', 'sec'] }
 }
 
 export default TimeConversionQ
