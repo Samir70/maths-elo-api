@@ -6,6 +6,7 @@ import { UPDATE_USER_ANSWER, KEYPAD_NUMBER, KEYPAD_DELETE,
 const newQ = { 
     q: "How many mathematicians does it take to change a light bulb?", 
     a: "1", QType:'giveDefault' };
+const defaultExtraKeys = ['--', '--', '--'];
 
 const initialState = {
     userRating: 1500,
@@ -13,7 +14,7 @@ const initialState = {
     needNewRatedQ: true,
     userAnswer: '',
     wrongAnswers: [], 
-    extraKeys4Pad: ['hrs','min', 'sec'],
+    extraKeys4Pad: defaultExtraKeys,
     showClassRoom: false
 }
 
@@ -27,6 +28,7 @@ const reducer = (state = initialState, action) => {
             ...state, 
             quAndA:action.quAndA, 
             needNewRatedQ: false,
+            extraKeys4Pad: action.quAndA.extraKeys || defaultExtraKeys,
             userAnswer:'', wrongAnswers:[]}
         case USER_IS_WRONG : return {
             ...state,
