@@ -20,7 +20,8 @@ const Keypad = ({ extraKeys, Keypad_number, Keypad_delete }) => {
         onClick={() => Keypad_delete()}
         className="keypadButton"
         key='keypad-buttonDEL'>DEL</button>
-    const extraButtons = extraKeys.slice(0, 3).map((x, i) => <button
+    var buttonCount = extraKeys.length === 6 ? 6 : 3
+    const extraButtons = extraKeys.slice(0, buttonCount).map((x, i) => <button
         onClick={() => Keypad_number(x)}
         className="keypadButton"
         key={'extra-keypad-button'+x+i}>{x}
@@ -31,7 +32,9 @@ const Keypad = ({ extraKeys, Keypad_number, Keypad_delete }) => {
             <div>{buttons1_9.slice(3, 6)}</div>
             <div>{buttons1_9.slice(6)}</div>
             <div>{button0}{buttonDP}{buttonDEL}</div>
-            {extraKeys.length > 0 ? extraButtons : ''}
+            <hr />
+            {buttonCount > 0 ? extraButtons.slice(0, 3) : ''}
+            {buttonCount === 6 ? extraButtons.slice(3, 6) : ''}
         </div>
     )
 }
