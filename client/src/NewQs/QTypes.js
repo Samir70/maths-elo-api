@@ -3,6 +3,7 @@ export const TimeConversion = 'TimeConversion';
 export const MultiplyNumbers = 'MultiplyNumbers';
 export const Vocab = 'Vocab';
 export const Ratio = 'Ratio';
+export const Algebra01 = 'Algebra01'
 
 // Aiming for QCodes which the app can parse to produce a new question of the same type
 // but with different numbers.

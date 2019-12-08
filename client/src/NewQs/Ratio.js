@@ -1,5 +1,5 @@
 import { Ratio } from './QTypes';
-import RandomElement from './RandomElement';
+import {RandomElement} from './RandomFuncs';
 
 const subQTypes = [
     null, 'simplify', 'mapForm', 'keepRatio', 'share', 'givenDiff'

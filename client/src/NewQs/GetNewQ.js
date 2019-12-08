@@ -4,13 +4,14 @@ import MetricConversionQ from './MetricConversion';
 import TimeConversionQ from './TimeConversion';
 import VocabQ from './VocabQ';
 import RatioQ from './Ratio';
+import Algebra01Q from './AlgebraQ';
 import { MultiplyNumberQ } from './NumberOperations';
-import { metricConversion, TimeConversion, MultiplyNumbers, Vocab, Ratio } from './QTypes';
-const QTypes = [metricConversion, TimeConversion, MultiplyNumbers, Vocab, Ratio];
+import { metricConversion, TimeConversion, MultiplyNumbers, Vocab, Ratio, Algebra01 } from './QTypes';
+const QTypes = [metricConversion, TimeConversion, MultiplyNumbers, Vocab, Ratio, Algebra01];
 
 export const GetNewQ = (QType, subQType) => {
   //console.log('QType and subQType', QType, subQType)
-  var type = QType || QTypes[Math.floor(Math.random() * QTypes.length)];
+  var type = Algebra01 || QTypes[Math.floor(Math.random() * QTypes.length)];
   var newQ;
   switch (type) {
     case metricConversion: { newQ = MetricConversionQ(subQType); break }
@@ -18,6 +19,7 @@ export const GetNewQ = (QType, subQType) => {
     case TimeConversion: { newQ = TimeConversionQ(subQType); break }
     case Vocab: { newQ = VocabQ(); break }
     case Ratio: { newQ = RatioQ(subQType); break}
+    case Algebra01: {newQ = Algebra01Q(subQType); break}
     default: return {
       q: "How many mathematicians does it take to change a light bulb?",
       a: "1", QType: 'giveDefault'
