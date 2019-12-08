@@ -25,7 +25,9 @@ const TimeConversionQ = (subType) => {
     * because answer should be a number
     */
 
-    let forward = Math.random() < 0.5 ? true : false;
+    // at the moment, I don't like the need for answers with unspecified format
+    // So I am setting forward to false so it never asks for answer in form 2hr 3min 5sec
+    let forward = Math.random() < 0 ? true : false;
     var left, right, leftUnits, rightUnits;
     var sec = rnd(60), min = rnd(60), hr = rnd(24);
     switch (conversionPairs[subQType]) {

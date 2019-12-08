@@ -20,10 +20,10 @@ const Keypad = ({ extraKeys, Keypad_number, Keypad_delete }) => {
         onClick={() => Keypad_delete()}
         className="keypadButton"
         key='keypad-buttonDEL'>DEL</button>
-    const extraButtons = extraKeys.slice(0, 3).map(x => <button
+    const extraButtons = extraKeys.slice(0, 3).map((x, i) => <button
         onClick={() => Keypad_number(x)}
         className="keypadButton"
-        key={'extra-keypad-button'+x}>{x}
+        key={'extra-keypad-button'+x+i}>{x}
         </button>)
     return (
         <div className="keypad">
