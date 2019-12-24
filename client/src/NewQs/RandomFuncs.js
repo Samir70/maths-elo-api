@@ -1,4 +1,6 @@
-export const RandomElement = (arr) => arr[Math.floor(Math.random()*arr.length)];
-export const RandomInt = (n) => Math.floor(Math.random()*n);
+const RandomElement = (arr) => arr[Math.floor(Math.random()*arr.length)];
+const RandomInt = (n) => Math.floor(Math.random()*n);
+
+module.exports = {RandomElement, RandomInt}
 
 //export default RandomElement;
