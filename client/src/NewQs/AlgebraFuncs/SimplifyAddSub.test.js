@@ -6,6 +6,11 @@ describe('combine function', () => {
             .toBe('6a+7c+3b-9a+4c');
     });
 
+    it('should display just a number if the variable name is an empty string', () => {
+        expect(combine([6, 7, 3, -9, 4], ['a', 'c', '', 'a', 'c']))
+            .toBe('6a+7c+3-9a+4c');
+    })
+
     it('should not display coefficient if it is one', () => {
         expect(combine([1, 3, -2, -4], ['a', 'b', 'a', 'c']))
             .toBe('a+3b-2a-4c');
@@ -34,5 +39,10 @@ describe('SimplifyAddSub function', () => {
     it('should simplify a mixtute of positive and negative terms', () => {
         expect(SimplifyAddSub([6, 7, 3, -9, 4], ['a', 'c', 'b', 'a', 'c']))
             .toBe('-3a+3b+11c');
+        });
+        
+        it('should simplify when number value is a term', () => {
+            expect(SimplifyAddSub([6, 7, 3, -9, 4], ['a', '', '', 'a', 'c']))
+                .toBe('10-3a+4c');
     })
 })
