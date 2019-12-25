@@ -1,13 +1,6 @@
-const { RandomInt, RandomElement } = require('../RandomFuncs');
+import { Coeffs, threeVars, twoVars, oneVar } from './CoeffsAndVars';
+const { RandomInt } = require('../RandomFuncs');
 
-const Coeffs = (n) => Array(n).fill(9).map(RandomInt)
-        .map((x, i)=>{
-            if (i===0) {return x+1}
-            return RandomInt(2) === 1 ? x+1 : -(x+1)
-        });
-const threeVars = (n) => Array(n).fill(['a', 'b', 'c']).map(RandomElement);
-const twoVars = (n) => Array(n).fill(['a', 'b']).map(RandomElement);
-const oneVar = (n) => Array(n).fill(RandomElement(['a', 'b', 'c']));
 
 // to test above, which are random so can't be tested with jest
 // for (var i = 0; i<10; i++) {
@@ -43,6 +36,7 @@ export const SimplifyAddSub = (c, v) => {
 }
 
 // expression in Q has n terms
+// at the moment, none of them are simply numbers
 export const simpAddSubQ = (n) => {
     var coeffs = Coeffs(n);
     var t = RandomInt(4); // to choose how many variables to put into Q
