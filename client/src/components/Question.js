@@ -80,6 +80,7 @@ const Question = ({
                         onChange={changeHandler} />
                     <button type="submit">Submit</button>
                 </form>
+                <p>{quAndA.furtherInstructions || ''}</p>
                 {wrongAnswerList}
                 <br />
             </div>

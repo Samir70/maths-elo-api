@@ -3,12 +3,16 @@ import { RandomElement } from './RandomFuncs';
 import { simpAddSubQ } from './AlgebraFuncs/SimplifyAddSub';
  
 const subQTypes = [
-    null, 'simplifyAddSub'
+    null, 'simplifyAddSub', 'expandBracket'
 ];
 
 const Algebra01Q = (subType) => {
     const subQType = subQTypes[Number(subType)] || RandomElement(subQTypes.slice(1));
-    var quAndA = { QType: Algebra01+'-'+subQType, extraKeys:['a', 'b', 'c', '+', '-', '/'] }
+    var quAndA = { 
+        QType: Algebra01+'-'+subQType, 
+        extraKeys:['a', 'b', 'c', '+', '-', '/'],
+        furtherInstructions: 'Give variables in alphabetical order. eg: 7+3a-2b' 
+    }
     switch (subQType) {
         case 'simplifyAddSub' : {
             var newQ = simpAddSubQ(5);
