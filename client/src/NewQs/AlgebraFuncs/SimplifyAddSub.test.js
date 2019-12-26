@@ -18,7 +18,19 @@ describe('combine function', () => {
     it('should not display coefficient if it is -1', () => {
         expect(combine([7, 3, -2, -1], ['a', 'b', 'a', 'c']))
             .toBe('7a+3b-2a-c');
-    })
+    });
+    it('should ignore variable if co-eff is zero', () => {
+        expect(combine([1, 4, 0, 2], ['a', 'b', 'a', 'b']))
+            .toBe('a+4b+2b')
+    });
+    it('should ignore variable and not start with plus if first co-eff is zero', () => {
+        expect(combine([0, 4, 4, 2], ['a', 'b', 'a', 'b']))
+            .toBe('4b+4a+2b')
+    });
+    it('should return zero if all co-eff are zero', () => {
+        expect(combine([0, 0, 0, 0], ['a', 'b', 'a', 'b']))
+            .toBe('0')
+    });
 
     it('should return null if variable array is empty', () => {
         expect(combine([7, 6, 4], [])).toBeNull;

@@ -18,13 +18,14 @@ export const combine = (c, v) => {
     if (l === 0 ) {return null}
     var exp = '';
     for (var i = 0; i<l; i++) {
-        exp += c[i] < 0 ? '-' : i > 0 ? '+' : '';
-        var val = Math.abs(c[i]);
-        exp += val === 1 ? '' : val;
-        exp += v[i];
-        // if (i<l-1) { exp+= ' ' }
+        if (c[i]!== 0) {
+            exp += c[i] < 0 ? '-' : exp.length > 0 ? '+' : '';
+            var val = Math.abs(c[i]);
+            exp += val === 1 ? '' : val;
+            exp += v[i];
+        }
     }
-    return exp;
+    return exp === '' ? '0' : exp;
 }
 
 // parameters are coefficients and the variable names
