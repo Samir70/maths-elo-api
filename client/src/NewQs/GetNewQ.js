@@ -11,7 +11,7 @@ const QTypes = [metricConversion, TimeConversion, MultiplyNumbers, Vocab, Ratio,
 
 export const GetNewQ = (QType, subQType) => {
   //console.log('QType and subQType', QType, subQType)
-  var type = Algebra01 || QTypes[Math.floor(Math.random() * QTypes.length)];
+  var type = QTypes[subQType] || QTypes[Math.floor(Math.random() * QTypes.length)];
   var newQ;
   switch (type) {
     case metricConversion: { newQ = MetricConversionQ(subQType); break }
