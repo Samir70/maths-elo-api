@@ -5,6 +5,6 @@ handleRatings = express.Router();
 
 handleRatings.get('/all', ratingsController.getAllRatings);
 handleRatings.get('/get1rating', ratingsController.get1Rating);
-handleRatings.post('/new-data', ratingsController.updateRatings);
+handleRatings.put('/new-data', ratingsController.updateRatings);
 
 module.exports = handleRatings;

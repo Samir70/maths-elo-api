@@ -43,7 +43,7 @@ const Question = ({
                 category: quAndA.QType,
                 ratingValue: newQuAndARating
             }
-            axios.post('/qratings/new-data', toPost)
+            axios.put('/qratings/new-data', toPost)
                 .then(res => console.log('Success while posting rating of Q', res))
                 .catch(err => console.log('Error while posting rating of Q', err));
         } else { console.log('Did not post about default Q') }
