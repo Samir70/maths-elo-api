@@ -1,7 +1,8 @@
 import { UPDATE_USER_ANSWER, KEYPAD_NUMBER, KEYPAD_DELETE,
     SET_NEW_Q, 
     USER_IS_WRONG, USER_RATING_CHANGES, 
-    TOGGLE_CLASS, NEED_NEW_RATED_Q } from './actions';
+    TOGGLE_CLASS, TOGGLE_LOGIN,
+    NEED_NEW_RATED_Q } from './actions';
 
 const newQ = { 
     q: "How many mathematicians does it take to change a light bulb?", 
@@ -15,7 +16,8 @@ const initialState = {
     userAnswer: '',
     wrongAnswers: [], 
     extraKeys4Pad: defaultExtraKeys,
-    showClassRoom: false
+    showClassRoom: false,
+    showLogin: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -39,7 +41,8 @@ const reducer = (state = initialState, action) => {
         case UPDATE_USER_ANSWER : return {...state, userAnswer:action.payload}
         case KEYPAD_NUMBER : return {...state, userAnswer:state.userAnswer+action.payload}
         case KEYPAD_DELETE : return {...state, userAnswer:state.userAnswer.slice(0, -1)}
-        case TOGGLE_CLASS : return {...state, showClassRoom:!state.showClassRoom}
+        case TOGGLE_CLASS : return {...state, showClassRoom:!state.showClassRoom, showLogin:false}
+        case TOGGLE_LOGIN : return {...state, showLogin:!state.showLogin}
         default : return state;
     } 
 }

@@ -3,6 +3,7 @@ export const SET_NEW_Q = 'SET_NEW_Q';
 export const USER_IS_WRONG = 'USER_IS_WRONG';
 export const USER_RATING_CHANGES = 'USER_RATING_CHANGES';
 export const TOGGLE_CLASS = 'TOGGLE_CLASS';
+export const TOGGLE_LOGIN = 'TOGGLE_LOGIN';
 export const NEED_NEW_RATED_Q = 'NEED_NEW_RATED_Q';
 export const KEYPAD_NUMBER = 'KEYPAD_NUMBER';
 export const KEYPAD_DELETE = 'KEYPAD_DELETE';
@@ -25,6 +26,10 @@ export const UserRatingChanges = (newUserRating) => {
 
 export const ToggleClass = () => {
     return {type:TOGGLE_CLASS}
+}
+
+export const ToggleLogin = () => {
+    return {type:TOGGLE_LOGIN}
 }
 
 export const NeedNewRatedQ = () => {
