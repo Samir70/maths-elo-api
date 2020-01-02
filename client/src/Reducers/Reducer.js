@@ -11,13 +11,15 @@ const defaultExtraKeys = ['--', '--', '--'];
 
 const initialState = {
     userRating: 1500,
+    userID: '',
     quAndA: newQ,
     needNewRatedQ: true,
     userAnswer: '',
     wrongAnswers: [], 
     extraKeys4Pad: defaultExtraKeys,
     showClassRoom: false,
-    showLogin: false
+    showLogin: true,
+    userLoggedIn: false
 }
 
 const reducer = (state = initialState, action) => {
