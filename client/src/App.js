@@ -9,10 +9,12 @@ import Loginform from './components/LoginForm';
 import { ToggleClass, ToggleLogin } from './Reducers/actions';
 import './App.css';
 
-const App = ({ userRating, currentQ, showClassRoom, showLogin, ToggleClass, ToggleLogin }) => {
+const App = ({ userName, userRating, currentQ, showClassRoom, showLogin, ToggleClass, ToggleLogin }) => {
   const giveme5Option = <Dropdown.Item onClick={ToggleClass}>5 in the Classroom</Dropdown.Item>;
   const rateMymathsOption = <Dropdown.Item onClick={ToggleClass}>Rate My Maths</Dropdown.Item>;
-  const loginOption = <Dropdown.Item onClick={ToggleLogin}>Login or Register</Dropdown.Item>
+  const loginOption = <Dropdown.Item onClick={ToggleLogin}>Login or Register</Dropdown.Item>;
+
+  const userLabel = userName === '' ? 'Guest user' : userName;
 
   return (
     <div className="App">
@@ -23,7 +25,7 @@ const App = ({ userRating, currentQ, showClassRoom, showLogin, ToggleClass, Togg
           {loginOption}
         </DropdownButton>
         <p>Rate and review your maths</p>
-        <p className="userVSquestion" >Guest User ({userRating}) VS {currentQ.QType} ({currentQ.QRating||'????'}) </p>
+        <p className="userVSquestion" >{userLabel} ({userRating}) VS {currentQ.QType} ({currentQ.QRating||'????'}) </p>
       </div>
       {showLogin ? <Loginform /> : 
          showClassRoom ? <ClassRoom QType={currentQ.QType} /> : <Question />}
@@ -35,6 +37,7 @@ const App = ({ userRating, currentQ, showClassRoom, showLogin, ToggleClass, Togg
 
 const mapStateToProps = (state) => {
   return {
+    userName: state.userID,
     userRating: state.userRating,
     currentQ: state.quAndA,
     showClassRoom: state.showClassRoom,

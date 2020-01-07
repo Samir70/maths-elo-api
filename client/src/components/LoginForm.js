@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { Button, Form } from 'react-bootstrap';
-import { ToggleLogin } from '../Reducers/actions';
+import { ToggleLogin, LoginUser } from '../Reducers/actions';
 
-const LoginForm = ({ userLoggedIn, userID, ToggleLogin }) => {
+const LoginForm = ({ ToggleLogin, LoginUser }) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         const toPost = {
@@ -13,8 +13,12 @@ const LoginForm = ({ userLoggedIn, userID, ToggleLogin }) => {
         }
         console.log('toPost is ', toPost);
         axios.put('/users/login', toPost)
-            .then(res => console.log('axios posted, got result', res))
-            .catch(err => console.log('axios posted got error', err));
+            .then(res => {
+                console.log('axios posted login, got result with status', res.status);
+                console.log('need to set new user with name, rating', res.data.userName, res.data.userRating)
+                LoginUser(res.data.userName, res.data.userRating)
+            })
+            .catch(err => console.log('axios posted login got error', err));
       }
     return (
         <div id="loginForm">
@@ -42,11 +46,4 @@ const LoginForm = ({ userLoggedIn, userID, ToggleLogin }) => {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        userLoggedIn: state.userLoggedIn,
-        userID: state.userID
-    }
-}
-
-export default connect(mapStateToProps, { ToggleLogin })(LoginForm);
+export default connect(null, { ToggleLogin, LoginUser })(LoginForm);

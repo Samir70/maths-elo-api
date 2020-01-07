@@ -1,6 +1,6 @@
 import { UPDATE_USER_ANSWER, KEYPAD_NUMBER, KEYPAD_DELETE,
     SET_NEW_Q, 
-    USER_IS_WRONG, USER_RATING_CHANGES, 
+    USER_IS_WRONG, USER_RATING_CHANGES, LOGIN_USER, 
     TOGGLE_CLASS, TOGGLE_LOGIN,
     NEED_NEW_RATED_Q } from './actions';
 
@@ -41,6 +41,11 @@ const reducer = (state = initialState, action) => {
             quAndA: {...state.quAndA, QRating: action.newQuAndARating}
         }
         case UPDATE_USER_ANSWER : return {...state, userAnswer:action.payload}
+        case LOGIN_USER : return {
+            ...state, 
+            userID:action.userName, userRating:action.userRating, 
+            showLogin:false, userLoggedIn:true
+        }
         case KEYPAD_NUMBER : return {...state, userAnswer:state.userAnswer+action.payload}
         case KEYPAD_DELETE : return {...state, userAnswer:state.userAnswer.slice(0, -1)}
         case TOGGLE_CLASS : return {...state, showClassRoom:!state.showClassRoom, showLogin:false}

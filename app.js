@@ -4,6 +4,7 @@ const { pool } = require('./config');
 
 const handleRatingsPG = require('./routes/QRatings_PG');
 const handleRatingsLite = require('./routes/QRatings');
+const handleUserDataLite = require('./routes/UserData');
 
 const getRatings = (request, response) => {
     pool.query('SELECT * FROM qratings', (error, results) => {
@@ -24,7 +25,8 @@ if (process.env.NODE_ENV = 'production') {
 if (process.env.PORT) {
   app.use('/qratings', handleRatingsPG);
 } else {
-  app.use('/qratings', handleRatingsLite)
+  app.use('/qratings', handleRatingsLite);
+  app.use('/users', handleUserDataLite);
 }
 app.use('/test-db', getRatings)
 
