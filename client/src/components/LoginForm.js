@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { Button, Form } from 'react-bootstrap';
-import { ToggleLogin, LoginUser } from '../Reducers/actions';
+import { ChangeActiveScreen, LoginUser } from '../Reducers/actions';
 
-const LoginForm = ({ ToggleLogin, LoginUser }) => {
+const LoginForm = ({ ChangeActiveScreen, LoginUser }) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         const toPost = {
@@ -23,7 +23,7 @@ const LoginForm = ({ ToggleLogin, LoginUser }) => {
     return (
         <div id="loginForm">
             <div>
-                <Button variant="link" onClick={ToggleLogin}>
+                <Button variant="link" onClick={()=>ChangeActiveScreen('testRoom')}>
                     If you are not a member, you can register for free
                 </Button>
             </div>
@@ -39,11 +39,11 @@ const LoginForm = ({ ToggleLogin, LoginUser }) => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" name="password" placeholder="Password" required />
                 </Form.Group>
-            <Button variant="secondary" onClick={ToggleLogin} >Cancel</Button>
+            <Button variant="secondary" onClick={()=>ChangeActiveScreen('testRoom')} >Cancel</Button>
             <Button variant="success" type="submit">Login</Button>
             </Form>
         </div>
     )
 }
 
-export default connect(null, { ToggleLogin, LoginUser })(LoginForm);
+export default connect(null, { ChangeActiveScreen, LoginUser })(LoginForm);

@@ -1,7 +1,7 @@
 import { UPDATE_USER_ANSWER, KEYPAD_NUMBER, KEYPAD_DELETE,
     SET_NEW_Q, 
-    USER_IS_WRONG, USER_RATING_CHANGES, LOGIN_USER, 
-    TOGGLE_CLASS, TOGGLE_LOGIN,
+    USER_IS_WRONG, USER_RATING_CHANGES, LOGIN_USER,
+    CHANGE_ACTIVE_SCREEN, 
     NEED_NEW_RATED_Q } from './actions';
 
 const newQ = { 
@@ -12,14 +12,13 @@ const defaultExtraKeys = ['--', '--', '--'];
 const initialState = {
     userRating: 1500,
     userID: '',
+    userLoggedIn: false,
     quAndA: newQ,
     needNewRatedQ: true,
     userAnswer: '',
     wrongAnswers: [], 
     extraKeys4Pad: defaultExtraKeys,
-    showClassRoom: false,
-    showLogin: true,
-    userLoggedIn: false
+    activeScreen: 'testRoom'
 }
 
 const reducer = (state = initialState, action) => {
@@ -44,12 +43,11 @@ const reducer = (state = initialState, action) => {
         case LOGIN_USER : return {
             ...state, 
             userID:action.userName, userRating:action.userRating, 
-            showLogin:false, userLoggedIn:true
+            activeScreen:'testRoom', userLoggedIn:true
         }
         case KEYPAD_NUMBER : return {...state, userAnswer:state.userAnswer+action.payload}
         case KEYPAD_DELETE : return {...state, userAnswer:state.userAnswer.slice(0, -1)}
-        case TOGGLE_CLASS : return {...state, showClassRoom:!state.showClassRoom, showLogin:false}
-        case TOGGLE_LOGIN : return {...state, showLogin:!state.showLogin}
+        case CHANGE_ACTIVE_SCREEN : return {...state, activeScreen:action.newScreen}
         default : return state;
     } 
 }

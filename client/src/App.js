@@ -5,45 +5,50 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 import Question from './components/Question';
 import ClassRoom from './components/ClassRoom';
-import Loginform from './components/LoginForm';
-import { ToggleClass, ToggleLogin } from './Reducers/actions';
+import LoginForm from './components/LoginForm';
+import { ChangeActiveScreen } from './Reducers/actions';
 import './App.css';
 
-const App = ({ userName, userRating, currentQ, showClassRoom, showLogin, ToggleClass, ToggleLogin }) => {
-  const giveme5Option = <Dropdown.Item onClick={ToggleClass}>5 in the Classroom</Dropdown.Item>;
-  const rateMymathsOption = <Dropdown.Item onClick={ToggleClass}>Rate My Maths</Dropdown.Item>;
-  const loginOption = <Dropdown.Item onClick={ToggleLogin}>Login or Register</Dropdown.Item>;
+const App = ({ userName, userRating, currentQ, activeScreen, ChangeActiveScreen }) => {
+  const giveme5Option = <Dropdown.Item onClick={()=>ChangeActiveScreen('classRoom')}>5 in the Classroom</Dropdown.Item>;
+  const rateMymathsOption = <Dropdown.Item onClick={()=>ChangeActiveScreen('testRoom')}>Rate My Maths</Dropdown.Item>;
+  const loginOption = <Dropdown.Item onClick={()=>ChangeActiveScreen('login')}>Login or Register</Dropdown.Item>;
 
   const userLabel = userName === '' ? 'Guest user' : userName;
+
+  const mainScreen = () => {
+    switch (activeScreen) {
+      case "testRoom" : return <Question />;
+      case "classRoom" : return <ClassRoom QType={currentQ.QType} />;
+      case "login" : return <LoginForm />;
+      default : return <Question />
+    }
+  }
 
   return (
     <div className="App">
       <div className="header" >
         <DropdownButton id="dropdown-variants-info" 
           title="Maths ELO" className="appTitle" size="lg">
-          {showClassRoom ? rateMymathsOption : giveme5Option}
+          {activeScreen === 'testRoom' ? giveme5Option : rateMymathsOption}
           {loginOption}
         </DropdownButton>
         <p>Rate and review your maths</p>
         <p className="userVSquestion" >{userLabel} ({userRating}) VS {currentQ.QType} ({currentQ.QRating||'????'}) </p>
       </div>
-      {showLogin ? <Loginform /> : 
-         showClassRoom ? <ClassRoom QType={currentQ.QType} /> : <Question />}
+      { mainScreen() }
     </div>
   );
 }
-// used before dropdown menu implemented
-// {showClassRoom ? giveMeTestsbtn : giveme5btn }
 
 const mapStateToProps = (state) => {
   return {
     userName: state.userID,
     userRating: state.userRating,
     currentQ: state.quAndA,
-    showClassRoom: state.showClassRoom,
-    showLogin: state.showLogin
+    activeScreen: state.activeScreen
   }
 }
 
 
-export default connect(mapStateToProps, { ToggleClass, ToggleLogin })(App);
+export default connect(mapStateToProps, { ChangeActiveScreen })(App);
