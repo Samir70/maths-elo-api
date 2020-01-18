@@ -21,10 +21,11 @@ export const combine = (c, v) => {
         if (c[i]!== 0) {
             exp += c[i] < 0 ? '-' : exp.length > 0 ? '+' : '';
             var val = Math.abs(c[i]);
-            exp += val === 1 ? '' : val;
+            exp += val === 1 && v[i] !== '' ? '' : val;
             exp += v[i];
         }
     }
+    console.log('combining ', c, v, 'to get', exp)
     return exp === '' ? '0' : exp;
 }
 
