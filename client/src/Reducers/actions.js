@@ -1,5 +1,6 @@
 export const UPDATE_USER_ANSWER = 'UPDATE_USER_ANSWER';
 export const TOGGLE_TOPIC = "TOGGLE_TOPIC";
+export const ALL_TOPICS = "ALL_TOPICS";
 export const SET_NEW_Q = 'SET_NEW_Q';
 export const USER_IS_WRONG = 'USER_IS_WRONG';
 export const USER_RATING_CHANGES = 'USER_RATING_CHANGES';
@@ -15,6 +16,10 @@ export const UpdateUserAnswer = (newAnswer) => {
 
 export const ToggleTopic = (topic) => {
     return { type: TOGGLE_TOPIC, topic:topic }
+}
+
+export const AllTopics = (mode) => {
+    return { type: ALL_TOPICS, mode }
 }
 
 export const SetNewQ = (newQuAndA) => {

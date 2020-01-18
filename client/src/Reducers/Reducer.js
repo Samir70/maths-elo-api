@@ -1,4 +1,4 @@
-import { UPDATE_USER_ANSWER, TOGGLE_TOPIC,
+import { UPDATE_USER_ANSWER, TOGGLE_TOPIC, ALL_TOPICS,
     KEYPAD_NUMBER, KEYPAD_DELETE,
     SET_NEW_Q, 
     USER_IS_WRONG, USER_RATING_CHANGES, LOGIN_USER,
@@ -34,6 +34,9 @@ const reducer = (state = initialState, action) => {
     switch (action.type) {
         case UPDATE_USER_ANSWER : return {...state, userAnswer:action.payload}
         case TOGGLE_TOPIC : return {...state, selectedTopics:addOrDrop(state.selectedTopics, action.topic)}
+        case ALL_TOPICS : return { ...state, 
+            selectedTopics: action.mode==='all' ? [...QTypes] : []
+        }
         case NEED_NEW_RATED_Q : return {...state, needNewRatedQ:true}
         case USER_RATING_CHANGES: return {...state, userRating:action.userRating}
         case SET_NEW_Q : return {
