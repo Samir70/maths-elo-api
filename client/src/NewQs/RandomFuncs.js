@@ -1,6 +1,16 @@
 const RandomElement = (arr) => arr[Math.floor(Math.random()*arr.length)];
 const RandomInt = (n) => Math.floor(Math.random()*n);
 
+const elementsFrom = (n, arr) => {
+    if (arr.length === n) {return arr}
+    if (arr.length > n) {return distinctElementsFrom(n, arr)}
+    var list = [];
+    while (list.length<n) {
+        list = [...list, ...arr];
+    }
+    return list.slice(0, n)
+}
+
 const distinctElementsFrom = (n, arr) => {
     var list = [];
     if (arr.length<=n) {return arr}
@@ -17,6 +27,6 @@ const RandomPrime = (t) => t === 'small' ? RandomElement(smallPrimes) : RandomEl
 const distinctPrimes = (n, t) => t === 'small' ? 
             distinctElementsFrom(n, smallPrimes) : distinctElementsFrom(n, primes);
 
-module.exports = {RandomElement, RandomInt, RandomPrime, distinctElementsFrom, distinctPrimes}
+module.exports = {RandomElement, RandomInt, RandomPrime, elementsFrom, distinctElementsFrom, distinctPrimes}
 
 //export default RandomElement;
