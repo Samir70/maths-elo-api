@@ -51,6 +51,11 @@
   margin:auto;
 }
 
+#topicList {
+  width:80vw;
+  margin:auto;
+}
+
 .quandaBlock-odd {
   background: lightgreen;
   display: flex;
