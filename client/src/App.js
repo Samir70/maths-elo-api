@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 import Question from './components/Question';
 import ClassRoom from './components/ClassRoom';
+import TopicSelect from './components/TopicSelect';
 import LoginForm from './components/LoginForm';
 import { ChangeActiveScreen } from './Reducers/actions';
 import './App.css';
@@ -12,6 +13,7 @@ import './App.css';
 const App = ({ userName, userRating, currentQ, activeScreen, ChangeActiveScreen }) => {
   const giveme5Option = <Dropdown.Item onClick={()=>ChangeActiveScreen('classRoom')}>5 in the Classroom</Dropdown.Item>;
   const rateMymathsOption = <Dropdown.Item onClick={()=>ChangeActiveScreen('testRoom')}>Rate My Maths</Dropdown.Item>;
+  const selectTopicsOption = <Dropdown.Item onClick={()=>ChangeActiveScreen('topicSelect')} >Select Topics</Dropdown.Item>
   const loginOption = <Dropdown.Item onClick={()=>ChangeActiveScreen('login')}>Login or Register</Dropdown.Item>;
 
   const userLabel = userName === '' ? 'Guest user' : userName;
@@ -20,6 +22,7 @@ const App = ({ userName, userRating, currentQ, activeScreen, ChangeActiveScreen 
     switch (activeScreen) {
       case "testRoom" : return <Question />;
       case "classRoom" : return <ClassRoom QType={currentQ.QType} />;
+      case "topicSelect" : return <TopicSelect />
       case "login" : return <LoginForm />;
       default : return <Question />
     }
@@ -31,6 +34,7 @@ const App = ({ userName, userRating, currentQ, activeScreen, ChangeActiveScreen 
         <DropdownButton id="dropdown-variants-info" 
           title="Maths ELO" className="appTitle" size="lg">
           {activeScreen === 'testRoom' ? giveme5Option : rateMymathsOption}
+          {selectTopicsOption}
           {/* {loginOption} */}
         </DropdownButton>
         <p>Rate and review your maths</p>
