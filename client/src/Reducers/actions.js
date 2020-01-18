@@ -1,4 +1,5 @@
 export const UPDATE_USER_ANSWER = 'UPDATE_USER_ANSWER';
+export const TOGGLE_TOPIC = "TOGGLE_TOPIC";
 export const SET_NEW_Q = 'SET_NEW_Q';
 export const USER_IS_WRONG = 'USER_IS_WRONG';
 export const USER_RATING_CHANGES = 'USER_RATING_CHANGES';
@@ -10,6 +11,10 @@ export const KEYPAD_DELETE = 'KEYPAD_DELETE';
 
 export const UpdateUserAnswer = (newAnswer) => {
     return { type: UPDATE_USER_ANSWER, payload: newAnswer}
+}
+
+export const ToggleTopic = (topic) => {
+    return { type: TOGGLE_TOPIC, topic:topic }
 }
 
 export const SetNewQ = (newQuAndA) => {

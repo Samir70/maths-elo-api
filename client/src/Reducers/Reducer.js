@@ -1,8 +1,11 @@
-import { UPDATE_USER_ANSWER, KEYPAD_NUMBER, KEYPAD_DELETE,
+import { UPDATE_USER_ANSWER, TOGGLE_TOPIC,
+    KEYPAD_NUMBER, KEYPAD_DELETE,
     SET_NEW_Q, 
     USER_IS_WRONG, USER_RATING_CHANGES, LOGIN_USER,
     CHANGE_ACTIVE_SCREEN, 
     NEED_NEW_RATED_Q } from './actions';
+
+import { QTypes } from '../NewQs/QTypes';
 
 const newQ = { 
     q: "How many mathematicians does it take to change a light bulb?", 
@@ -16,16 +19,22 @@ const initialState = {
     quAndA: newQ,
     needNewRatedQ: true,
     userAnswer: '',
+    selectedTopics: [...QTypes],
     wrongAnswers: [], 
     extraKeys4Pad: defaultExtraKeys,
     activeScreen: 'testRoom'
 }
 
+const addOrDrop = (arr, el) => {
+    return arr.includes(el) ? arr.filter(e => e !== el) : [...arr, el]
+}
+
 const reducer = (state = initialState, action) => {
     console.log('handling the action ', action)
     switch (action.type) {
+        case UPDATE_USER_ANSWER : return {...state, userAnswer:action.payload}
+        case TOGGLE_TOPIC : return {...state, selectedTopics:addOrDrop(state.selectedTopics, action.topic)}
         case NEED_NEW_RATED_Q : return {...state, needNewRatedQ:true}
-        // split update of rating and quandA
         case USER_RATING_CHANGES: return {...state, userRating:action.userRating}
         case SET_NEW_Q : return {
             ...state, 
@@ -39,7 +48,6 @@ const reducer = (state = initialState, action) => {
             userAnswer: '',
             quAndA: {...state.quAndA, QRating: action.newQuAndARating}
         }
-        case UPDATE_USER_ANSWER : return {...state, userAnswer:action.payload}
         case LOGIN_USER : return {
             ...state, 
             userID:action.userName, userRating:action.userRating, 
