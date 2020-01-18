@@ -6,8 +6,12 @@ import VocabQ from './VocabQ';
 import RatioQ from './Ratio';
 import Algebra01Q from './AlgebraQ';
 import { MultiplyNumberQ } from './NumberOperations';
-import { metricConversion, TimeConversion, MultiplyNumbers, Vocab, Ratio, Algebra01 } from './QTypes';
-const QTypes = [metricConversion, TimeConversion, MultiplyNumbers, Vocab, Ratio, Algebra01];
+import { 
+  metricConversion, TimeConversion, MultiplyNumbers, 
+  Vocab, Ratio, Algebra01, 
+  QTypes 
+} from './QTypes';
+
 
 export const GetNewQ = (QType, subQType) => {
   //console.log('QType and subQType', QType, subQType)

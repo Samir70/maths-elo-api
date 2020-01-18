@@ -8,8 +8,15 @@ export const Algebra01 = 'Algebra01'
 // Aiming for QCodes which the app can parse to produce a new question of the same type
 // but with different numbers.
 
-// Format will be a string beginning with a QType
-// 'metricConversion-2'
-// would get us the subQType with index 2 for that topic
+// Format will be a string with format QType-subQType
+// 'metricConversion-2', or 'Algebra01-expandBracket'
 // whereas: just 'metricConversion' (or 'metricConversion-0') 
 // should allow for a random choice of subQType
+
+export const QTypes = [
+    metricConversion, TimeConversion, 
+    MultiplyNumbers, 
+    Vocab, 
+    Ratio, 
+    Algebra01
+];
