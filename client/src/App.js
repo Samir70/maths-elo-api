@@ -31,7 +31,7 @@ const App = ({ userName, userRating, currentQ, activeScreen, ChangeActiveScreen 
         <DropdownButton id="dropdown-variants-info" 
           title="Maths ELO" className="appTitle" size="lg">
           {activeScreen === 'testRoom' ? giveme5Option : rateMymathsOption}
-          {loginOption}
+          {/* {loginOption} */}
         </DropdownButton>
         <p>Rate and review your maths</p>
         <p className="userVSquestion" >{userLabel} ({userRating}) VS {currentQ.QType} ({currentQ.QRating||'????'}) </p>
