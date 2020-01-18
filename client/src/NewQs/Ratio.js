@@ -6,7 +6,7 @@ const subQTypes = [
 ]
 
 const RatioQ = (subType) => {
-    const subQType = subQTypes[Number(subType)] || RandomElement(subQTypes.slice(1));
+    const subQType = subType || RandomElement(subQTypes.slice(1));
     var quAndA = { QType: Ratio+'-'+subQType, extraKeys:[':', ':', ':'] }
 
     switch (subQType) {
