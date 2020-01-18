@@ -10,7 +10,9 @@ import LoginForm from './components/LoginForm';
 import { ChangeActiveScreen } from './Reducers/actions';
 import './App.css';
 
-const App = ({ userName, userRating, currentQ, activeScreen, ChangeActiveScreen }) => {
+const App = ({ 
+    userName, userRating, currentQ, 
+    activeScreen, selectedTopics, ChangeActiveScreen }) => {
   const giveme5Option = <Dropdown.Item onClick={()=>ChangeActiveScreen('classRoom')}>5 in the Classroom</Dropdown.Item>;
   const rateMymathsOption = <Dropdown.Item onClick={()=>ChangeActiveScreen('testRoom')}>Rate My Maths</Dropdown.Item>;
   const selectTopicsOption = <Dropdown.Item onClick={()=>ChangeActiveScreen('topicSelect')} >Select Topics</Dropdown.Item>
@@ -21,7 +23,8 @@ const App = ({ userName, userRating, currentQ, activeScreen, ChangeActiveScreen 
   const mainScreen = () => {
     switch (activeScreen) {
       case "testRoom" : return <Question />;
-      case "classRoom" : return <ClassRoom QType={currentQ.QType} />;
+      case "classRoom" : return <ClassRoom typeList={[currentQ.QType]} />;
+      case "classRoom-General" : return <ClassRoom typeList={selectedTopics} />;
       case "topicSelect" : return <TopicSelect />
       case "login" : return <LoginForm />;
       default : return <Question />
@@ -50,7 +53,8 @@ const mapStateToProps = (state) => {
     userName: state.userID,
     userRating: state.userRating,
     currentQ: state.quAndA,
-    activeScreen: state.activeScreen
+    activeScreen: state.activeScreen,
+    selectedTopics: state.selectedTopics
   }
 }
 
