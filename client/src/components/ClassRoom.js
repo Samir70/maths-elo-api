@@ -9,9 +9,12 @@ const ClassRoom = (props) => {
     
     typesToShow.forEach((t, i) =>  {
         var QTypeSplit = t.split('-');
-        var newQ = GetNewQ(QTypeSplit[0], QTypeSplit[1]);
+        console.log('classroom is looking for qType', t, QTypeSplit);
         qList.push(
-            <QWithReveal q={newQ.q} a={newQ.a} rowType={'' + i} key={i} />
+            <QWithReveal 
+                freshQ = {() => GetNewQ(QTypeSplit[0], QTypeSplit[1])}
+                rowType={'' + i} 
+                key={i} />
         )
     });
 
@@ -19,6 +22,7 @@ const ClassRoom = (props) => {
         <div>
             <h2>This is the class room</h2>
             <h3>Where you simply click to see the answers</h3>
+            <p>(Click on a question to get another of the same type)</p>
             {qList}
         </div>
     )

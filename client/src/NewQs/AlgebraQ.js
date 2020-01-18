@@ -8,7 +8,7 @@ const subQTypes = [
 ];
 
 const Algebra01Q = (subType) => {
-    const subQType = subQTypes[Number(subType)] || RandomElement(subQTypes.slice(1));
+    const subQType = subType || RandomElement(subQTypes.slice(1));
     var quAndA = {
         QType: Algebra01 + '-' + subQType,
         extraKeys: ['a', 'b', 'c', '+', '-', '/'],

@@ -25,7 +25,7 @@ export const combine = (c, v) => {
             exp += v[i];
         }
     }
-    console.log('combining ', c, v, 'to get', exp)
+    // console.log('combining ', c, v, 'to get', exp)
     return exp === '' ? '0' : exp;
 }
 
