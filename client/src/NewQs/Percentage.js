@@ -37,7 +37,7 @@ const percentAmount = (t) => {
 
 export const PercentOfQ = (subType) => {
   const type = subType || RandomElement(subTypeList.slice(1));
-  const quAndA = { qType: PercentOf + '-' + type };
+  const quAndA = { QType: PercentOf + '-' + type };
   var [percen, amount] = percentAmount(type);
 
   if (percen !== 0) {
@@ -52,7 +52,7 @@ export const PercentOfQ = (subType) => {
 
 export const PercentChangeQ = (subType) => {
   const type = subType || RandomElement(subTypeList.slice(1));
-  const quAndA = { qType: PercentChange + '-' + type };
+  const quAndA = { QType: PercentChange + '-' + type };
   var [percen, amount] = percentAmount(type);
 
   if (percen !== 0) {
@@ -81,7 +81,7 @@ export const ReversePercentageQ = () => {
   const percen = RandomElement(intermediate);
   const amount = (RandomInt(30) + 1) * 15;
   const quAndA = {
-    qType: ReversePercentage,
+    QType: ReversePercentage,
     a: amount
   };
   if (RandomInt(2) === 0) {
