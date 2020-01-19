@@ -52,7 +52,7 @@ export const PercentOfQ = (subType) => {
 
 export const PercentChangeQ = (subType) => {
   const type = subType || RandomElement(subTypeList.slice(1));
-  const quAndA = { qType: PercentOf + '-' + type };
+  const quAndA = { qType: PercentChange + '-' + type };
   var [percen, amount] = percentAmount(type);
 
   if (percen !== 0) {
