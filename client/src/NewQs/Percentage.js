@@ -49,3 +49,30 @@ export const PercentOfQ = (subType) => {
   }
   return quAndA;
 }
+
+export const PercentChangeQ = (subType) => {
+  const type = subType || RandomElement(subTypeList.slice(1));
+  const quAndA = { qType: PercentOf + '-' + type };
+  var [percen, amount] = percentAmount(type);
+
+  if (percen !== 0) {
+    if (RandomInt(4) === 0) { // ask user to calculate what the percentage change was
+      quAndA.q = 'A shop is having a sale. The price of an item went from £'
+        +amount+' to £'+((100-percen)*amount/100).toFixed(2) 
+        +'  Find the percentage change';
+      quAndA.a = percen;
+    } else { // ask user to calculate the new amount
+      if (RandomInt(2)===1) {
+        quAndA.q = 'Increase ' + amount + ' by ' + percen + '%';
+        quAndA.a = (100+percen)*amount/100;
+      } else {
+        quAndA.q = 'Decrease ' + amount + ' by ' + percen + '%';
+        quAndA.a = (100-percen)*amount/100;
+      }
+    }
+  } else { //percen was zero
+    quAndA.q = 'Default Percentage Q';
+    quAndA.a = 42
+  }
+  return quAndA;
+}
