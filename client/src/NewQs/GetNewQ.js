@@ -6,20 +6,22 @@ import VocabQ from './VocabQ';
 import RatioQ from './Ratio';
 import Algebra01Q from './AlgebraQ';
 import { MultiplyNumberQ } from './NumberOperations';
+import { PercentOfQ } from './Percentage';
 import { 
-  metricConversion, TimeConversion, MultiplyNumbers, 
+  metricConversion, TimeConversion, MultiplyNumbers, PercentOf,
   Vocab, Ratio, Algebra01, 
   QTypes 
 } from './QTypes';
 
 
 export const GetNewQ = (QType, subQType) => {
-  //console.log('QType and subQType', QType, subQType)
+  console.log('QType and subQType', QType, subQType)
   var type = QType || QTypes[Math.floor(Math.random() * QTypes.length)];
   var newQ;
   switch (type) {
     case metricConversion: { newQ = MetricConversionQ(subQType); break }
     case MultiplyNumbers: { newQ = MultiplyNumberQ(subQType); break }
+    case PercentOf : { newQ = PercentOfQ(subQType); break }
     case TimeConversion: { newQ = TimeConversionQ(subQType); break }
     case Vocab: { newQ = VocabQ(); break }
     case Ratio: { newQ = RatioQ(subQType); break}
@@ -29,6 +31,7 @@ export const GetNewQ = (QType, subQType) => {
       a: "1", QType: 'giveDefault'
     }
   }
+  console.log(newQ)
   return newQ;
 }
 
