@@ -10,6 +10,27 @@ The question ratings are saved to a database. When working as a developer, the d
 
 Here's a link to the [working math-elo app on Heroku](https://math-elo-api.herokuapp.com/). The api is also available on that URL, eg: here is the [list of question types](https://math-elo-api.herokuapp.com/qratings/all) ordered by rating.
 
+## Using the app
+The main page is the test page, where the computer asks questions and the user answers. Most answers are either a number or a word. Symbols like £, %, etc are generally not needed in the numerical answers. The computer will mark the answer. If the answer is correct then the user's rating goes up and the question's rating goes down. The reverse happens if the user is wrong.
+
+### The Classroom
+The classroom lists five questions and reveals the answer when the user clicks on the 'reveal answer' button. This can be useful if you are having trouble getting the correct format for an answer. (Eventually, I will add more user instructions so the format of the answer is clearer when it is not just a number). No rating changes happen here.
+
+There are two ways to get to the classroom: 
+- straight from the test area. (Find the link in the drop down menu at the top of the page). In this case you get five questions on the exact same topic which was just being tested. (You can see its type and sub-type in the status bar under the main heading)
+- via the topic select page
+
+You can refresh a question by clicking on it. It will be replaced by another of the same topic.
+
+### The topic select page
+You can get to this page via the drop-down menu at the top of the page. Then you can select which topics you want to focus on in the classroom. There is a button to clear all the topics, and another to select them all. With or without using these, you can click on each individual topic to toggle its selection. 
+
+Most topics have sub-topics. Eventually I will enable selecting sub topics, but it is not possible right now. 
+
+When you have made your seleciton: click on the 'go to the classroom' link under the 'select all' button. Questions in the classroom can still be refreshed by clicking on them. They will be replaced by another from the same topic. If you like, you can do this a few times to see the range of related sub-topics. Again: no rating changes take place in the classroom.
+
+Note: when you go back to the test area, the computer will go on picking random topics -- starting from the question that was there when you left the test area. Eventually: I will modify the topic selection algorithm so that the computer will track the user's ability and aim to raise this. But users can't even log in, yet. So there is no point in collecting the data.
+
 ## Aims for the project
 ### Questions
 * Obviously: more questions
