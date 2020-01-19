@@ -3,6 +3,7 @@ export const TimeConversion = 'TimeConversion';
 export const MultiplyNumbers = 'MultiplyNumbers';
 export const PercentOf = 'PercentOf';
 export const PercentChange = 'PercentChange'; 
+export const ReversePercentage = 'ReversePercentage';
 export const Vocab = 'Vocab';
 export const Ratio = 'Ratio';
 export const Algebra01 = 'Algebra01'
@@ -17,7 +18,8 @@ export const Algebra01 = 'Algebra01'
 
 export const QTypes = [
     metricConversion, TimeConversion, 
-    MultiplyNumbers, PercentOf, PercentChange,
+    MultiplyNumbers, 
+    PercentOf, PercentChange, ReversePercentage,
     Vocab, 
     Ratio, 
     Algebra01
