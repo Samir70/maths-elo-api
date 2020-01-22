@@ -17,7 +17,22 @@ const coprimes = {
 }
 
 // apart from 7 itself, these numbers have only 2, 3, 5 as prime factors (and not too high)
-const multipliers = [2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 15, 18, 20, 24, 25, 30 ]
+const multipliers = [2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 15, 18, 20, 24, 25, 30 ];
+
+// decimals and fractions [decimal, numerator, denominator]
+const decFrac = [
+    [0.5, 1, 2],
+    [1.5, 3, 2],
+    [2.5, 5, 2],
+    [0.25, 1, 4],
+    [0.75, 3, 4],
+    [1.25, 5, 4],
+    [0.2, 1, 5],
+    [0.4, 2, 5],
+    [0.6, 3, 5],
+    [0.8, 4, 5],
+    [1.2, 6, 5]
+]
 
 const simplifyQ = () => {
     var a = ''+(RandomInt(5) + 1);
@@ -25,6 +40,12 @@ const simplifyQ = () => {
     if (RandomInt(2)===0) { [a, b] = [b, a] }
     var m = RandomElement(multipliers);
     return {high: a*m+':'+b*m, simp:a+':'+b}
+}
+
+const mapFormQ = () => {
+    var dF = RandomElement(decFrac);
+    var m = RandomElement(multipliers.slice(0, 5));
+    return {high: m*dF[2]+':'+m*dF[1], mF:'1:'+dF[0]}
 }
 
 const RatioQ = (subType) => {
@@ -39,7 +60,13 @@ const RatioQ = (subType) => {
             quAndA.answerFormat="string"; 
             break
         }
-        case 'mapForm' : {quAndA.q="Express 16:12 in the form 1:n"; quAndA.a="1:0.75"; quAndA.answerFormat="string"; break}
+        case 'mapForm' : {
+            qA = mapFormQ();
+            quAndA.q="Express "+qA.high+" in the form 1:n"; 
+            quAndA.a=qA.mF; 
+            quAndA.answerFormat="string"; 
+            break
+        }
         case 'keepRatio' : {quAndA.q="The ratio of men to women waiting at a bus stop is 3:2. If there are 6 men, then how many women are there?"; quAndA.a="4"; break}
         case 'share' : {quAndA.q="Share £180 in the ratio 3:5:4, giving your answer as a ratio"; quAndA.a="45:75:60"; quAndA.answerFormat="string"; break}
         case 'givenDiff' : {quAndA.q="Alice and Bob share some money in the ratio 7:5 Alice gets £10 more than Bob. How much money did they share?"; quAndA.a="60"; break}
