@@ -29,8 +29,8 @@ export const distinctPrimes = (n, t) => t === 'small' ?
 
 const names = [
     'Alice', 'Alex','Bruce', 'Caroline', 'Demi', 'Edwina', 
-    'Felix', 'Farnaz', 'Grace', 'Helen', 'Isabel', 'James', 'Jana', 
-    'Katie', 'Kal', 'Louis', 'Meera', 'Muthu', 'Natalie', 'Nandini',
+    'Felix', 'Farnaz', 'Grace', 'Helen', 'Isobel', 'James', 'Jana', 
+    'Katie', 'Kal', 'Louise', 'Meera', 'Muthu', 'Natalie', 'Nandini',
     'Parvathy',
     'Ranjit', 'Raji', 
     'Sadia', 'Steven', 'Sam',
