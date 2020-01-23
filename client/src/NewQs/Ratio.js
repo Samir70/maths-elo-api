@@ -94,13 +94,27 @@ const shareQ = () => {
     var m = RandomInt(10) + 2;
     var q = giveNames(n) + ' share £' + ratioVals.reduce((a, b) => a + b) * m
         + ' in the ratio ' + ratioVals.join(':')
-        + '   How much money did' + n[askAbout] + 'get?';
+        + '   How much money did ' + n[askAbout] + ' get?';
     var a = ratioVals[askAbout] * m;
     return { q, a }
 }
 
+const givenDiffQ = () => {
+    var n = randomNames(3);
+    var seq = RandomElement(['012', '021', '120', '102', '210', '201']).split('').map(Number);
+    var ratioVals = distinctElementsFrom(3, [1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    var m = RandomInt(10) + 2;
+    var comparitor = ratioVals[seq[0]] > ratioVals[seq[1]] ? ' more' : ' less';
+    var q = giveNames(n) + ' shared some money in the ratio ' + ratioVals.join(':')
+        + ' ' +n[seq[0]] + ' got ' + Math.abs((ratioVals[seq[0]] - ratioVals[seq[1]]) * m)
+        + comparitor + ' than ' + n[seq[1]]
+        + '.   How much money did ' + n[seq[2]] + ' get?';
+    var a = ratioVals[seq[2]] * m;
+    return { q, a }
+}
+
 const RatioQ = (subType) => {
-    const subQType = 'share' //subType || RandomElement(subQTypes.slice(1));
+    const subQType = subType || RandomElement(subQTypes.slice(1));
     var quAndA = { QType: Ratio + '-' + subQType, extraKeys: [':', ':', ':'] }
 
     switch (subQType) {
@@ -122,7 +136,6 @@ const RatioQ = (subType) => {
             qA = keepRatioQ();
             quAndA.q = qA.q;
             quAndA.a = qA.a;
-            //quAndA.q="The ratio of men to women waiting at a bus stop is 3:2. If there are 6 men, then how many women are there?"; quAndA.a="4"; 
             break
         }
         case 'share': {
@@ -131,7 +144,12 @@ const RatioQ = (subType) => {
             quAndA.a = qA.a;
             break
         }
-        case 'givenDiff': { quAndA.q = "Alice and Bob share some money in the ratio 7:5 Alice gets £10 more than Bob. How much money did they share?"; quAndA.a = "60"; break }
+        case 'givenDiff': {
+            qA = givenDiffQ();
+            quAndA.q = qA.q;
+            quAndA.a = qA.a;
+            break
+        }
         default: { quAndA.q = "Ratio default Q"; quAndA.a = "42" }
     }
 
