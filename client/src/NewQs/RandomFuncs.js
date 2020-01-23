@@ -27,6 +27,15 @@ export const RandomPrime = (t) => t === 'small' ? RandomElement(smallPrimes) : R
 export const distinctPrimes = (n, t) => t === 'small' ? 
             distinctElementsFrom(n, smallPrimes) : distinctElementsFrom(n, primes);
 
-// module.exports = {RandomElement, RandomInt, RandomPrime, elementsFrom, distinctElementsFrom, distinctPrimes}
+const names = [
+    'Alice', 'Alex','Bruce', 'Caroline', 'Demi', 'Edwina', 
+    'Felix', 'Farnaz', 'Grace', 'Helen', 'Isabel', 'James', 'Jana', 
+    'Katie', 'Kal', 'Louis', 'Meera', 'Muthu', 'Natalie', 'Nandini',
+    'Parvathy',
+    'Ranjit', 'Raji', 
+    'Sadia', 'Steven', 'Sam',
+    'Victoria', 'Val',
+    'Zanet'
+];
 
-//export default RandomElement;
+export const randomNames = (n) => distinctElementsFrom(n, names);
