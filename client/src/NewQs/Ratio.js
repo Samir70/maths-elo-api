@@ -6,18 +6,18 @@ const subQTypes = [
 ];
 
 const coprimes = {
-    1 : [2, 3, 4, 5, 6, 7, 8, 9],
-    2 : [3, 5, 7, 9],
-    3 : [4, 5, 7, 8],
-    4 : [5, 7, 9],
-    5 : [6, 7, 8, 9]//,
+    1: [2, 3, 4, 5, 6, 7, 8, 9],
+    2: [3, 5, 7, 9],
+    3: [4, 5, 7, 8],
+    4: [5, 7, 9],
+    5: [6, 7, 8, 9]//,
     // 6 : [7],
     // 7 : [8, 9],
     // 8 : [9]
 }
 
 // apart from 7 itself, these numbers have only 2, 3, 5 as prime factors (and not too high)
-const multipliers = [2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 15, 18, 20, 24, 25, 30 ];
+const multipliers = [2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 15, 18, 20, 24, 25, 30];
 
 // decimals and fractions [decimal, numerator, denominator]
 const decFrac = [
@@ -35,17 +35,17 @@ const decFrac = [
 ]
 
 const simplifyQ = () => {
-    var a = ''+(RandomInt(5) + 1);
+    var a = '' + (RandomInt(5) + 1);
     var b = RandomElement(coprimes[a]);
-    if (RandomInt(2)===0) { [a, b] = [b, a] }
+    if (RandomInt(2) === 0) { [a, b] = [b, a] }
     var m = RandomElement(multipliers);
-    return {high: a*m+':'+b*m, simp:a+':'+b}
+    return { high: a * m + ':' + b * m, simp: a + ':' + b }
 }
 
 const mapFormQ = () => {
     var dF = RandomElement(decFrac);
     var m = RandomElement(multipliers.slice(0, 5));
-    return {high: m*dF[2]+':'+m*dF[1], mF:'1:'+dF[0]}
+    return { high: m * dF[2] + ':' + m * dF[1], mF: '1:' + dF[0] }
 }
 
 const giveNames = (arr) => {
@@ -58,65 +58,83 @@ const keepRatioQ = () => {
     var n = randomNames(3);
     var seq = RandomElement(['012', '021', '120', '102', '210', '201']).split('').map(Number);
     var ratioVals = distinctElementsFrom(3, [1, 2, 3, 4, 5, 6, 7, 8, 9]);
-    var m = RandomInt(10)+2;
+    var m = RandomInt(10) + 2;
     var qFormat = RandomInt(3);
     var q = '', a = '';
     switch (qFormat) {
-        case 0 : {
-            q = giveNames(n) + ' share some money in the ratio '+ratioVals.join(':')
-                + '   ' + n[seq[0]] + ' gets £' + ratioVals[seq[0]]*m 
+        case 0: {
+            q = giveNames(n) + ' share some money in the ratio ' + ratioVals.join(':')
+                + '   ' + n[seq[0]] + ' gets £' + ratioVals[seq[0]] * m
                 + '   How much money did they share?';
-            a = ratioVals.reduce((a, b) => a+b)*m;
+            a = ratioVals.reduce((a, b) => a + b) * m;
             break
         }
-        case 1 : {
+        case 1: {
             q = giveNames([n[0], n[1]]) + ' share some money in the ratio '
                 + ratioVals.slice(0, 2).join(':')
-                + '   ' + n[0] + ' gets £' + ratioVals[0]*m 
-                + '   How much does '+n[1] + ' get?';
-            a = ratioVals[1]*m;
+                + '   ' + n[0] + ' gets £' + ratioVals[0] * m
+                + '   How much does ' + n[1] + ' get?';
+            a = ratioVals[1] * m;
             break
         }
-        default : {
-            q = giveNames(n) + ' share some money in the ratio '+ratioVals.join(':')
-                + '   ' + n[seq[0]] + ' gets £' + ratioVals[seq[0]]*m 
-                + '   How much does '+n[seq[1]] + ' get?';
-            a = ratioVals[seq[1]]*m;
+        default: {
+            q = giveNames(n) + ' share some money in the ratio ' + ratioVals.join(':')
+                + '   ' + n[seq[0]] + ' gets £' + ratioVals[seq[0]] * m
+                + '   How much does ' + n[seq[1]] + ' get?';
+            a = ratioVals[seq[1]] * m;
         }
     }
-    return {q, a}
+    return { q, a }
+}
+
+const shareQ = () => {
+    var n = randomNames(3);
+    var askAbout = RandomInt(3);
+    var ratioVals = distinctElementsFrom(3, [1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    var m = RandomInt(10) + 2;
+    var q = giveNames(n) + ' share £' + ratioVals.reduce((a, b) => a + b) * m
+        + ' in the ratio ' + ratioVals.join(':')
+        + '   How much money did' + n[askAbout] + 'get?';
+    var a = ratioVals[askAbout] * m;
+    return { q, a }
 }
 
 const RatioQ = (subType) => {
-    const subQType =  'keepRatio' //subType || RandomElement(subQTypes.slice(1));
-    var quAndA = { QType: Ratio+'-'+subQType, extraKeys:[':', ':', ':'] }
+    const subQType = 'share' //subType || RandomElement(subQTypes.slice(1));
+    var quAndA = { QType: Ratio + '-' + subQType, extraKeys: [':', ':', ':'] }
 
     switch (subQType) {
-        case 'simplify' : {
+        case 'simplify': {
             var qA = simplifyQ();
-            quAndA.q="Simplify " +  qA.high; 
-            quAndA.a=qA.simp;
-            quAndA.answerFormat="string"; 
+            quAndA.q = "Simplify " + qA.high;
+            quAndA.a = qA.simp;
+            quAndA.answerFormat = "string";
             break
         }
-        case 'mapForm' : {
+        case 'mapForm': {
             qA = mapFormQ();
-            quAndA.q="Express "+qA.high+" in the form 1:n"; 
-            quAndA.a=qA.mF; 
-            quAndA.answerFormat="string"; 
+            quAndA.q = "Express " + qA.high + " in the form 1:n";
+            quAndA.a = qA.mF;
+            quAndA.answerFormat = "string";
             break
         }
-        case 'keepRatio' : {
+        case 'keepRatio': {
             qA = keepRatioQ();
-            quAndA.q = qA.q; 
+            quAndA.q = qA.q;
             quAndA.a = qA.a;
             //quAndA.q="The ratio of men to women waiting at a bus stop is 3:2. If there are 6 men, then how many women are there?"; quAndA.a="4"; 
-            break}
-        case 'share' : {quAndA.q="Share £180 in the ratio 3:5:4, giving your answer as a ratio"; quAndA.a="45:75:60"; quAndA.answerFormat="string"; break}
-        case 'givenDiff' : {quAndA.q="Alice and Bob share some money in the ratio 7:5 Alice gets £10 more than Bob. How much money did they share?"; quAndA.a="60"; break}
-        default : {quAndA.q="Ratio default Q"; quAndA.a="42"}
+            break
+        }
+        case 'share': {
+            qA = shareQ();
+            quAndA.q = qA.q;
+            quAndA.a = qA.a;
+            break
+        }
+        case 'givenDiff': { quAndA.q = "Alice and Bob share some money in the ratio 7:5 Alice gets £10 more than Bob. How much money did they share?"; quAndA.a = "60"; break }
+        default: { quAndA.q = "Ratio default Q"; quAndA.a = "42" }
     }
-    
+
     console.log(quAndA);
     return quAndA
 }
