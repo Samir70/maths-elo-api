@@ -1,5 +1,5 @@
 import { Ratio } from './QTypes';
-import { RandomInt, RandomElement } from './RandomFuncs';
+import { RandomInt, RandomElement, randomNames, distinctElementsFrom } from './RandomFuncs';
 
 const subQTypes = [
     null, 'simplify', 'mapForm', 'keepRatio', 'share', 'givenDiff'
@@ -48,8 +48,47 @@ const mapFormQ = () => {
     return {high: m*dF[2]+':'+m*dF[1], mF:'1:'+dF[0]}
 }
 
+const giveNames = (arr) => {
+    // don't use with only one name in the array!
+    if (arr.length === 2) { return arr.join(' and ') }
+    return arr[0] + ', ' + giveNames(arr.slice(1))
+}
+
+const keepRatioQ = () => {
+    var n = randomNames(3);
+    var seq = RandomElement(['012', '021', '120', '102', '210', '201']).split('').map(Number);
+    var ratioVals = distinctElementsFrom(3, [1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    var m = RandomInt(10)+2;
+    var qFormat = RandomInt(3);
+    var q = '', a = '';
+    switch (qFormat) {
+        case 0 : {
+            q = giveNames(n) + ' share some money in the ratio '+ratioVals.join(':')
+                + '   ' + n[seq[0]] + ' gets £' + ratioVals[seq[0]]*m 
+                + '   How much money did they share?';
+            a = ratioVals.reduce((a, b) => a+b)*m;
+            break
+        }
+        case 1 : {
+            q = giveNames([n[0], n[1]]) + ' share some money in the ratio '
+                + ratioVals.slice(0, 2).join(':')
+                + '   ' + n[0] + ' gets £' + ratioVals[0]*m 
+                + '   How much does '+n[1] + ' get?';
+            a = ratioVals[1]*m;
+            break
+        }
+        default : {
+            q = giveNames(n) + ' share some money in the ratio '+ratioVals.join(':')
+                + '   ' + n[seq[0]] + ' gets £' + ratioVals[seq[0]]*m 
+                + '   How much does '+n[seq[1]] + ' get?';
+            a = ratioVals[seq[1]]*m;
+        }
+    }
+    return {q, a}
+}
+
 const RatioQ = (subType) => {
-    const subQType = subType || RandomElement(subQTypes.slice(1));
+    const subQType =  'keepRatio' //subType || RandomElement(subQTypes.slice(1));
     var quAndA = { QType: Ratio+'-'+subQType, extraKeys:[':', ':', ':'] }
 
     switch (subQType) {
@@ -67,7 +106,12 @@ const RatioQ = (subType) => {
             quAndA.answerFormat="string"; 
             break
         }
-        case 'keepRatio' : {quAndA.q="The ratio of men to women waiting at a bus stop is 3:2. If there are 6 men, then how many women are there?"; quAndA.a="4"; break}
+        case 'keepRatio' : {
+            qA = keepRatioQ();
+            quAndA.q = qA.q; 
+            quAndA.a = qA.a;
+            //quAndA.q="The ratio of men to women waiting at a bus stop is 3:2. If there are 6 men, then how many women are there?"; quAndA.a="4"; 
+            break}
         case 'share' : {quAndA.q="Share £180 in the ratio 3:5:4, giving your answer as a ratio"; quAndA.a="45:75:60"; quAndA.answerFormat="string"; break}
         case 'givenDiff' : {quAndA.q="Alice and Bob share some money in the ratio 7:5 Alice gets £10 more than Bob. How much money did they share?"; quAndA.a="60"; break}
         default : {quAndA.q="Ratio default Q"; quAndA.a="42"}
