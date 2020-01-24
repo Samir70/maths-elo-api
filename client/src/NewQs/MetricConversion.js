@@ -10,7 +10,7 @@ const conversionPairs = [
     {large:['kilograms', 'Kg'], small:['grams', 'g'], ratio:1000},
 
     {large:['litres', 'L'], small:['centilitres', 'cL'], ratio:100},
-    {large:['litres', 'L'], small:['millimetres', 'mL'], ratio:1000},
+    {large:['litres', 'L'], small:['millilitres', 'mL'], ratio:1000},
 ]
 
 const MetricConversionQ = (subQType) => {
