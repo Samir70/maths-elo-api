@@ -10,7 +10,7 @@ const subQTypes = [
 
 export const MultiplyNumberQ = (subQType) => {
     var type = Number(subQType) || Math.floor(Math.random()*(subQTypes.length-1))+1;
-    console.log(MultiplyNumbers+'-'+type)
+    // console.log(MultiplyNumbers+'-'+type)
     var a = Math.ceil(Math.random()*9)+1, 
         b = Math.ceil(Math.random()*9)+1,
         c = Math.ceil(Math.random()*90)+10;
