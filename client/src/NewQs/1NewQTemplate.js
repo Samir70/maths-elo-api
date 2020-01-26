@@ -9,13 +9,16 @@ const subjectQ = (subType) => {
     const subQType = subType || RandomElement(subQTypes.slice(1));
     // define the things which are already decieded whatever the returned question
     // consider extraKeys, answerFormat
-    var quAndA = { QType: getTheQType + '-' + subQType }
+    var quAndA = { QType: getTheQType + '-' + subQType };
+    var qA = {};
     switch (subQType) {
         default : {  
-            quAndA.q = 'default Data Question';
-            quAndA.a = 42
+            qA.q = 'default Data Question';
+            qA.a = 42
         }
     }
+    quAndA.q = qA.q;
+    quAndA.a = qA.a;
     return quAndA
 }
 
