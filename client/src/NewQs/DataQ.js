@@ -2,7 +2,7 @@ import { Data } from './QTypes';
 import { RandomInt, RandomElement } from './RandomFuncs';
 
 const subQTypes = [
-    null, 'mean', 'median', 'mode', 'range', 'meanFindmissing'
+    null, 'mean', 'meanFindmissing'//, 'median', 'mode', 'range'
 ];
 
 const meanQ = (t) => {
@@ -27,7 +27,7 @@ const meanQ = (t) => {
  }
 
 const DataQ = (subType) => {
-    const subQType = 'mean' //subType || RandomElement(subQTypes.slice(1));
+    const subQType = subType || RandomElement(subQTypes.slice(1));
     // define the things which are already decieded whatever the returned question
     // consider extraKeys, answerFormat
     var quAndA = { QType: Data + '-' + subQType }
