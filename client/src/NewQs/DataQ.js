@@ -2,8 +2,18 @@ import { Data } from './QTypes';
 import { RandomInt, nRandomInts, RandomElement } from './RandomFuncs';
 
 const subQTypes = [
-    null, 'mean', 'meanFindmissing'//, 'median', 'mode', 'range'
+    null, 'mean', 'meanFindmissing', 'medianOdd', 'medianEven'//, 'mode', 'range'
 ];
+
+const medianQ = (t) => {
+    const howMany = RandomInt(3) + 2;
+    var listLength = t === 'ODD' ? howMany*2 + 1 : howMany*2;
+    var list = nRandomInts(listLength, 15).map(x=>x+3);
+    var q = 'Find the median of '+list.join(', ');
+    var sortedList = list.sort((a, b) => a-b);
+    var a = t === 'ODD' ? sortedList[howMany] : (sortedList[howMany-1] + sortedList[howMany])/2
+    return {q, a}
+}
 
 const meanQ = (t) => {
     var howMany = RandomInt(3) + 5;
@@ -23,7 +33,7 @@ const meanQ = (t) => {
     return {q, a}
  }
 
-const DataQ = (subType) => {
+const DataQ = (subType = 'medianEven') => {
     const subQType = subType || RandomElement(subQTypes.slice(1));
     // define the things which are already decieded whatever the returned question
     // consider extraKeys, answerFormat
@@ -32,6 +42,8 @@ const DataQ = (subType) => {
     switch (subQType) {
         case 'mean' : { qA = meanQ('regular'); break }
         case 'meanFindmissing' : { qA = meanQ('findMissing'); break }
+        case 'medianOdd' : { qA = medianQ('ODD'); break }
+        case 'medianEven' : { qA = medianQ('EVEN'); break }
         default : {  
             qA.q = 'default Data Question';
             qA.a = 42
