@@ -5,12 +5,13 @@ import TimeConversionQ from './TimeConversion';
 import VocabQ from './VocabQ';
 import RatioQ from './Ratio';
 import Algebra01Q from './AlgebraQ';
+import DataQ from './DataQ'
 import { MultiplyNumberQ } from './NumberOperations';
 import { PercentOfQ, PercentChangeQ, ReversePercentageQ } from './Percentage';
 import { 
   metricConversion, TimeConversion, MultiplyNumbers, 
   PercentOf, PercentChange, ReversePercentage,
-  Vocab, Ratio, Algebra01, 
+  Vocab, Ratio, Algebra01, Data,
   QTypes 
 } from './QTypes';
 
@@ -29,6 +30,7 @@ export const GetNewQ = (QType, subQType) => {
     case Vocab: { newQ = VocabQ(); break }
     case Ratio: { newQ = RatioQ(subQType); break}
     case Algebra01: {newQ = Algebra01Q(subQType); break}
+    case Data: {newQ = DataQ(subQType); break}
     default: return {
       q: "How many mathematicians does it take to change a light bulb?",
       a: "1", QType: 'giveDefault'
