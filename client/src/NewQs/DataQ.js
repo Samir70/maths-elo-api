@@ -15,30 +15,33 @@ const meanQ = (t) => {
     }
     var listTotal = list.reduce((a, b) => a+b);
     var targetMean = Math.ceil(listTotal/howMany);
-    if (t='findMissing') {
+    if (t==='findMissing') {
         var q = 'The numbers '+list.join(', ')+', x have a mean of '+targetMean+'. Find x';
         var a = targetMean*howMany - listTotal
+    } else {
+        list.push(targetMean*howMany - listTotal);
+        q = 'Find the mean of  '+list.join(', ');
+        a = targetMean
     }
     return {q, a}
  }
 
 const DataQ = (subType) => {
-    const subQType = 'meanFindmissing' //subType || RandomElement(subQTypes.slice(1));
+    const subQType = 'mean' //subType || RandomElement(subQTypes.slice(1));
     // define the things which are already decieded whatever the returned question
     // consider extraKeys, answerFormat
     var quAndA = { QType: Data + '-' + subQType }
+    var qA = {};
     switch (subQType) {
-        case 'meanFindmissing' : {
-            var qA = meanQ('findMissing');
-            quAndA.q = qA.q;
-            quAndA.a = qA.a;
-            break
-        }
+        case 'mean' : { qA = meanQ('regular'); break }
+        case 'meanFindmissing' : { qA = meanQ('findMissing'); break }
         default : {  
-            quAndA.q = 'default Data Question';
-            quAndA.a = 42
+            qA.q = 'default Data Question';
+            qA.a = 42
         }
     }
+    quAndA.q = qA.q;
+    quAndA.a = qA.a;
     return quAndA
 }
 
