@@ -153,7 +153,7 @@ const RatioQ = (subType) => {
         default: { quAndA.q = "Ratio default Q"; quAndA.a = "42" }
     }
 
-    console.log(quAndA);
+    // console.log(quAndA);
     return quAndA
 }
 

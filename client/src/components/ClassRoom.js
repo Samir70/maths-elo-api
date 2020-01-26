@@ -9,7 +9,7 @@ const ClassRoom = (props) => {
     
     typesToShow.forEach((t, i) =>  {
         var QTypeSplit = t.split('-');
-        console.log('classroom is looking for qType', t, QTypeSplit);
+        // console.log('classroom is looking for qType', t, QTypeSplit);
         qList.push(
             <QWithReveal 
                 freshQ = {() => GetNewQ(QTypeSplit[0], QTypeSplit[1])}

@@ -17,7 +17,7 @@ import {
 
 
 export const GetNewQ = (QType, subQType) => {
-  console.log('QType and subQType', QType, subQType)
+  // console.log('QType and subQType', QType, subQType)
   var type = QType || QTypes[Math.floor(Math.random() * QTypes.length)];
   var newQ;
   switch (type) {
@@ -36,7 +36,7 @@ export const GetNewQ = (QType, subQType) => {
       a: "1", QType: 'giveDefault'
     }
   }
-  console.log(newQ)
+  // console.log(newQ)
   return newQ;
 }
 
