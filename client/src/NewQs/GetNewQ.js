@@ -7,9 +7,10 @@ import RatioQ from './Ratio';
 import Algebra01Q from './AlgebraQ';
 import DataQ from './DataQ'
 import { MultiplyNumberQ } from './NumberOperations';
+import NegNumQ from './NegNumQ';
 import { PercentOfQ, PercentChangeQ, ReversePercentageQ } from './Percentage';
 import { 
-  metricConversion, TimeConversion, MultiplyNumbers, 
+  metricConversion, TimeConversion, MultiplyNumbers, NegNumbers,
   PercentOf, PercentChange, ReversePercentage,
   Vocab, Ratio, Algebra01, Data,
   QTypes 
@@ -23,6 +24,7 @@ export const GetNewQ = (QType, subQType) => {
   switch (type) {
     case metricConversion: { newQ = MetricConversionQ(subQType); break }
     case MultiplyNumbers: { newQ = MultiplyNumberQ(subQType); break }
+    case NegNumbers : { newQ = NegNumQ(subQType); break }
     case PercentOf : { newQ = PercentOfQ(subQType); break }
     case PercentChange : { newQ = PercentChangeQ(subQType); break }
     case ReversePercentage : { newQ = ReversePercentageQ(); break }
