@@ -1,19 +1,16 @@
 import { Data } from './QTypes';
-import { RandomInt, RandomElement } from './RandomFuncs';
+import { RandomInt, nRandomInts, RandomElement } from './RandomFuncs';
 
 const subQTypes = [
     null, 'mean', 'meanFindmissing'//, 'median', 'mode', 'range'
 ];
 
 const meanQ = (t) => {
-    var howMany = RandomInt(3) + 5
-    var list = [];
-    var i = 0;
-    while (i < howMany - 1){
-        list.push(RandomInt(12)+5);
-        i++;
-    }
+    var howMany = RandomInt(3) + 5;
+    var offset = RandomInt(10) + 1;
+    var list = nRandomInts(howMany, 15).map(x=>x+offset);    
     var listTotal = list.reduce((a, b) => a+b);
+    howMany++;
     var targetMean = Math.ceil(listTotal/howMany);
     if (t==='findMissing') {
         var q = 'The numbers '+list.join(', ')+', x have a mean of '+targetMean+'. Find x';
