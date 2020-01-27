@@ -1,5 +1,14 @@
 export const RandomElement = (arr) => arr[Math.floor(Math.random()*arr.length)];
 export const RandomInt = (n) => Math.floor(Math.random()*n);
+export const nRandomInts = (n, max) => {
+    var l = [];
+    var i = 0;
+    while (i < n){
+        l.push(RandomInt(max));
+        i++;
+    }
+    return l;
+}
 
 export const elementsFrom = (n, arr) => {
     if (arr.length === n) {return arr}
@@ -28,12 +37,12 @@ export const distinctPrimes = (n, t) => t === 'small' ?
             distinctElementsFrom(n, smallPrimes) : distinctElementsFrom(n, primes);
 
 const names = [
-    'Alice', 'Alex','Bruce', 'Caroline', 'Demi', 'Edwina', 
+    'Alice', 'Alex', 'Arlene', 'Bruce', 'Caroline', 'Demi', 'Edwina', 
     'Felix', 'Farnaz', 'Grace', 'Helen', 'Isobel', 'James', 'Jana', 
-    'Katie', 'Kal', 'Louise', 'Meera', 'Muthu', 'Natalie', 'Nandini',
+    'Katie', 'Kal', 'Louise', 'Meera', 'Muthu', 'Natalie', 'Nandini', 'Nadiya',
     'Parvathy',
     'Ranjit', 'Raji', 
-    'Sadia', 'Steven', 'Sam',
+    'Sadia', 'Sharon','Shraddha', 'Steven', 'Sam',
     'Victoria', 'Val',
     'Zanet'
 ];

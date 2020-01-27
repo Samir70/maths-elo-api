@@ -5,23 +5,26 @@ import TimeConversionQ from './TimeConversion';
 import VocabQ from './VocabQ';
 import RatioQ from './Ratio';
 import Algebra01Q from './AlgebraQ';
+import DataQ from './DataQ'
 import { MultiplyNumberQ } from './NumberOperations';
+import NegNumQ from './NegNumQ';
 import { PercentOfQ, PercentChangeQ, ReversePercentageQ } from './Percentage';
 import { 
-  metricConversion, TimeConversion, MultiplyNumbers, 
+  metricConversion, TimeConversion, MultiplyNumbers, NegNumbers,
   PercentOf, PercentChange, ReversePercentage,
-  Vocab, Ratio, Algebra01, 
+  Vocab, Ratio, Algebra01, Data,
   QTypes 
 } from './QTypes';
 
 
 export const GetNewQ = (QType, subQType) => {
-  console.log('QType and subQType', QType, subQType)
+  // console.log('QType and subQType', QType, subQType)
   var type = QType || QTypes[Math.floor(Math.random() * QTypes.length)];
   var newQ;
   switch (type) {
     case metricConversion: { newQ = MetricConversionQ(subQType); break }
     case MultiplyNumbers: { newQ = MultiplyNumberQ(subQType); break }
+    case NegNumbers : { newQ = NegNumQ(subQType); break }
     case PercentOf : { newQ = PercentOfQ(subQType); break }
     case PercentChange : { newQ = PercentChangeQ(subQType); break }
     case ReversePercentage : { newQ = ReversePercentageQ(); break }
@@ -29,12 +32,13 @@ export const GetNewQ = (QType, subQType) => {
     case Vocab: { newQ = VocabQ(); break }
     case Ratio: { newQ = RatioQ(subQType); break}
     case Algebra01: {newQ = Algebra01Q(subQType); break}
+    case Data: {newQ = DataQ(subQType); break}
     default: return {
       q: "How many mathematicians does it take to change a light bulb?",
       a: "1", QType: 'giveDefault'
     }
   }
-  console.log(newQ)
+  // console.log(newQ)
   return newQ;
 }
 

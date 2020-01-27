@@ -1,12 +1,14 @@
 export const metricConversion = 'metricConversion';
 export const TimeConversion = 'TimeConversion';
 export const MultiplyNumbers = 'MultiplyNumbers';
+export const NegNumbers = 'NegNumbers';
 export const PercentOf = 'PercentOf';
 export const PercentChange = 'PercentChange'; 
 export const ReversePercentage = 'ReversePercentage';
 export const Vocab = 'Vocab';
 export const Ratio = 'Ratio';
-export const Algebra01 = 'Algebra01'
+export const Algebra01 = 'Algebra01';
+export const Data = 'Data';
 
 // Aiming for QCodes which the app can parse to produce a new question of the same type
 // but with different numbers.
@@ -18,9 +20,10 @@ export const Algebra01 = 'Algebra01'
 
 export const QTypes = [
     metricConversion, TimeConversion, 
-    MultiplyNumbers, 
+    MultiplyNumbers, NegNumbers,
     PercentOf, PercentChange, ReversePercentage,
     Vocab, 
     Ratio, 
-    Algebra01
+    Algebra01, 
+    Data
 ].sort();
