@@ -33,7 +33,7 @@ const meanQ = (t) => {
     return {q, a}
  }
 
-const DataQ = (subType = 'medianEven') => {
+const DataQ = (subType = '') => {
     const subQType = subType || RandomElement(subQTypes.slice(1));
     // define the things which are already decieded whatever the returned question
     // consider extraKeys, answerFormat
