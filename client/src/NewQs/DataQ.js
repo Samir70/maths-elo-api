@@ -2,8 +2,21 @@ import { Data } from './QTypes';
 import { RandomInt, nRandomInts, RandomElement } from './RandomFuncs';
 
 const subQTypes = [
-    null, 'mean', 'meanFindmissing', 'medianOdd', 'medianEven'//, 'mode', 'range'
+    null, 'mean', 'meanFindmissing', 'medianOdd', 'medianEven', 'range'//, 'mode'
 ];
+
+const modeQ = () => {
+
+}
+
+const rangeQ = () => {
+    const howMany = RandomInt(4)+4; // 4, 5, 6, 7
+    const offset = RandomInt(20)+1;
+    var list = nRandomInts(howMany, 20).map(x=>x+offset);
+    var q = 'Find the range of '+list.join(', ');
+    var a = Math.max(...list) - Math.min(...list);
+    return {q, a}
+}
 
 const medianQ = (t) => {
     const howMany = RandomInt(3) + 2;
@@ -44,6 +57,7 @@ const DataQ = (subType = '') => {
         case 'meanFindmissing' : { qA = meanQ('findMissing'); break }
         case 'medianOdd' : { qA = medianQ('ODD'); break }
         case 'medianEven' : { qA = medianQ('EVEN'); break }
+        case 'range' : { qA = rangeQ(); break }
         default : {  
             qA.q = 'default Data Question';
             qA.a = 42
