@@ -34,6 +34,7 @@ Note: when you go back to the test area, the computer will go on picking random 
 ## Aims for the project
 ### Questions
 * Obviously: more questions
+* Some wrong answers are predictable and indicate a particular misconception. It would be useful to have the computer respond to these with more than just an opportunity to guess again. A break from a question they are getting wrong, so that they can be faced with questions which will help overcome their misconception.
 * It should be possible to save questions, to bookmark or link them
 * The question providers are not pure functions. Possibly refactor so that the random numbers they need are passed to them as parameters.
 * Help for users who do not already know the topic. This can be with links to BBC bitesize or with a dedicated page on the website.
