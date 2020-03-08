@@ -37,12 +37,12 @@ export const distinctPrimes = (n, t) => t === 'small' ?
             distinctElementsFrom(n, smallPrimes) : distinctElementsFrom(n, primes);
 
 const names = [
-    'Alice', 'Alex', 'Arlene', 'Bruce', 'Caroline', 'Demi', 'Edwina', 
+    'Alex', 'Arlene', 'Bruce', 'Caroline', 'Demi', 'Evette', 
     'Felix', 'Farnaz', 'Grace', 'Helen', 'Isobel', 'James', 'Jana', 
     'Katie', 'Kal', 'Louise', 'Meera', 'Muthu', 'Natalie', 'Nandini', 'Nadiya',
     'Parvathy',
     'Ranjit', 'Raji', 
-    'Sadia', 'Sharon','Shraddha', 'Steven', 'Sam',
+    'Sharon','Shraddha', 'Steven', 'Sam',
     'Victoria', 'Val',
     'Zanet'
 ];
