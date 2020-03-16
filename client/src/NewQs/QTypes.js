@@ -2,6 +2,7 @@ export const metricConversion = 'metricConversion';
 export const TimeConversion = 'TimeConversion';
 export const MultiplyNumbers = 'MultiplyNumbers';
 export const NegNumbers = 'NegNumbers';
+export const FactorsMultiples = 'FactorsAndMultiples';
 export const PercentOf = 'PercentOf';
 export const PercentChange = 'PercentChange'; 
 export const ReversePercentage = 'ReversePercentage';
@@ -22,6 +23,7 @@ export const Decimal = 'Decimal';
 export const QTypes = [
     metricConversion, TimeConversion, 
     MultiplyNumbers, NegNumbers, Decimal,
+    FactorsMultiples,
     PercentOf, PercentChange, ReversePercentage,
     Vocab, 
     Ratio, 
