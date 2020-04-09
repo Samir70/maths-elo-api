@@ -4,7 +4,7 @@ import { FactorsMultiples } from './QTypes';
 import { RandomElement, RandomInt, RandomPrime, random2357, distinctPrimes } from './RandomFuncs';
 
 const subQTypes = [
-    null, 'prodOfPrimes', 'findMultiple', 'facOrMul', 'hcf', 'lcm'
+    null, 'prodOfPrimes', 'findMultiple', 'facOrMul', 'hcf', 'lcm', 'numFactors'
 ];
 
 const findMultipleQ = () => {
@@ -55,8 +55,16 @@ const lcmQ = (level = 3) => {
     }
 }
 
+const numFactorsQ = (level=3) => {
+    let number = random2357(level)
+    return {
+        q:`How many factors does ${number.value} have?`,
+        a: number.exponents.map(x => x+1).reduce((acc, val) => acc*val, 1)
+    }
+}
+
 const FactorsMultiplesQ = (subType) => {
-    const subQType = 'lcm'//subType || RandomElement(subQTypes.slice(1));
+    const subQType = subType || RandomElement(subQTypes.slice(1));
     // define the things which are already decieded whatever the returned question
     // consider extraKeys, answerFormat, furtherInstructions
     var quAndA = { QType: FactorsMultiples + '-' + subQType };
@@ -78,6 +86,10 @@ const FactorsMultiplesQ = (subType) => {
         }
         case 'lcm': {
             qA = lcmQ(2);
+            break
+        }
+        case 'numFactors': {
+            qA = numFactorsQ(2)
             break
         }
         default: {
