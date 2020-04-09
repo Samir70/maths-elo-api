@@ -1,10 +1,10 @@
 // define the QType in QTypes, add to list of QTypes that is exported
 // and import it into GetNewQs
 import { FactorsMultiples } from './QTypes';
-import { RandomElement, RandomInt, RandomPrime } from './RandomFuncs';
+import { RandomElement, RandomInt, RandomPrime, random2357, distinctPrimes } from './RandomFuncs';
 
 const subQTypes = [
-    null, 'prodOfPrimes', 'findMultiple', 'facOrMul'
+    null, 'prodOfPrimes', 'findMultiple', 'facOrMul', 'hcf'
 ];
 
 const findMultipleQ = () => {
@@ -35,8 +35,18 @@ const prodOfPrimesQ = () => {
     }
 }
 
+const hcfQ = (level=3, howMany=2) => {
+    let hcf = random2357(level).value;
+    let numbers = distinctPrimes(howMany, 'small').map(x => x*hcf);
+    return {
+        q: `Find the highest common factor of 
+            ${numbers.slice(0, -1).join(', ')} and ${numbers.slice(-1)}`, 
+        a: hcf
+    }
+}
+
 const FactorsMultiplesQ = (subType) => {
-    const subQType = subType || RandomElement(subQTypes.slice(1));
+    const subQType = 'hcf'//subType || RandomElement(subQTypes.slice(1));
     // define the things which are already decieded whatever the returned question
     // consider extraKeys, answerFormat, furtherInstructions
     var quAndA = { QType: FactorsMultiples + '-' + subQType };
@@ -51,6 +61,10 @@ const FactorsMultiplesQ = (subType) => {
             quAndA.answerFormat = 'string';
             quAndA.furtherInstructions = 'Give primes in ascending order'
             qA = prodOfPrimesQ(); break
+        }
+        case 'hcf' :{
+            qA = hcfQ(2, RandomInt(2)+2)
+            break
         }
         default : {  
             qA.q = 'default factorsAndMultiples Question';
