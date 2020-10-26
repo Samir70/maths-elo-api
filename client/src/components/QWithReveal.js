@@ -18,7 +18,7 @@ class QWithReveal extends React.Component {
         const Answer = <h2 className="aBlock" onClick={this.handleClick} >{this.state.localQ.a}</h2>; 
         return (
             <div className={this.quandaClass}>
-                <h2 className="qBlock" onClick={this.refreshQ} >{this.state.localQ.q}</h2>
+                <h2 className="qBlock" onClick={this.refreshQ} title={this.state.localQ.QType} >{this.state.localQ.q}</h2>
                 {this.state.showAnswer ? Answer : RevealButton}
             </div>
         )
