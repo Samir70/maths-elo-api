@@ -22,7 +22,7 @@ const initialState = {
     selectedTopics: [...QTypes],
     wrongAnswers: [], 
     extraKeys4Pad: defaultExtraKeys,
-    activeScreen: 'testRoom'
+    activeScreen: 'topicSelect'
 }
 
 const addOrDrop = (arr, el) => {
