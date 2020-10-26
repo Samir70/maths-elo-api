@@ -2,9 +2,10 @@ import { Algebra01 } from './QTypes';
 import { RandomElement } from './RandomFuncs';
 import { simpAddSubQ } from './AlgebraFuncs/SimplifyAddSub';
 import { Expand1Q, Expand2SimplifyQ, FactoriseQ } from './AlgebraFuncs/ExpandBracket';
+import { substitutionQ } from './AlgebraFuncs/substitution';
 
 const subQTypes = [
-    null, 'simplifyAddSub', 'expandBracket', 'expand2Simplify', 'factorise1', 'factorise2'
+    null, 'simplifyAddSub', 'expandBracket', 'expand2Simplify', 'factorise1', 'factorise2', 'substitution'
 ];
 
 const Algebra01Q = (subType) => {
@@ -27,25 +28,29 @@ const Algebra01Q = (subType) => {
             quAndA.furtherInstructions = 'Give variables in order of appearance in brackets';
             break
         }
-        case 'expand2Simplify' : {
+        case 'expand2Simplify': {
             newQ = Expand2SimplifyQ();
             quAndA.answerFormat = 'string';
             quAndA.furtherInstructions = 'Give variables in order of appearance in brackets';
             break
-            
+
         }
-        case 'factorise1' : {
+        case 'factorise1': {
             newQ = FactoriseQ(1);
             quAndA.answerFormat = 'string';
             quAndA.furtherInstructions = 'Give variables in order of appearance';
             quAndA.extraKeys = ['a', 'b', '(', '+', '-', ')'];
             break
         }
-        case 'factorise2' : {
+        case 'factorise2': {
             newQ = FactoriseQ(2);
             quAndA.answerFormat = 'string';
             quAndA.furtherInstructions = 'Give variables in order of appearance';
             quAndA.extraKeys = ['a', 'b', '(', '+', '-', ')'];
+            break
+        }
+        case 'substitution': {
+            newQ = substitutionQ();
             break
         }
         default: { newQ.q = 'default algebra01 Q'; newQ.a = 42 }
