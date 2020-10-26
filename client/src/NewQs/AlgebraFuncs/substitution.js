@@ -38,6 +38,7 @@ export const substitutionQ = (level = RandomInt(4)) => {
         }
     }
     return {
+        qType: "Algebra01-substitution",
         q: 'What is the value of ' + expression + ' when ' + valList,
         a: answer
     }
