@@ -19,7 +19,7 @@ const initialState = {
     quAndA: newQ,
     needNewRatedQ: true,
     userAnswer: '',
-    selectedTopics: [...QTypes],
+    selectedTopics: [...QTypes].map(x=>x.topic),
     wrongAnswers: [], 
     extraKeys4Pad: defaultExtraKeys,
     activeScreen: 'topicSelect'
@@ -35,7 +35,7 @@ const reducer = (state = initialState, action) => {
         case UPDATE_USER_ANSWER : return {...state, userAnswer:action.payload}
         case TOGGLE_TOPIC : return {...state, selectedTopics:addOrDrop(state.selectedTopics, action.topic)}
         case ALL_TOPICS : return { ...state, 
-            selectedTopics: action.mode==='all' ? [...QTypes] : []
+            selectedTopics: action.mode==='all' ? [...QTypes].map(x=>x.topic) : []
         }
         case NEED_NEW_RATED_Q : return {...state, needNewRatedQ:true}
         case USER_RATING_CHANGES: return {...state, userRating:action.userRating}

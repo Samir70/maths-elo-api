@@ -46,8 +46,8 @@ const TimeConversionQ = (subType) => {
         }
         default: return { q:'TimeConversion default Q', a:'625' }
     }
-    subQType = TimeConversion+'-'+subQType;
-    console.log(subQType);
+    subQType = TimeConversion+'-'+conversionPairs[subQType];
+    // console.log(subQType);
     return forward ? 
         { q:'Convert '+left+leftUnits+' to '+rightUnits, 
           a:right, QType:subQType, answerFormat:'string', extraKeys:['hrs', 'min', 'sec'] } :

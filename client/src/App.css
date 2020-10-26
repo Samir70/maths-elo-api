@@ -51,9 +51,16 @@
   margin:auto;
 }
 
-#topicList {
-  min-width: 50vw;
+#topic-list {
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 90vw;
   margin:auto;
+}
+
+.topicButton {
+  margin: 5px;
 }
 
 .quandaBlock-odd {

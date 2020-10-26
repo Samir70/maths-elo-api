@@ -9,13 +9,13 @@ const subQTypes = [
 ]
 
 export const MultiplyNumberQ = (subQType) => {
-    var type = Number(subQType) || Math.floor(Math.random()*(subQTypes.length-1))+1;
+    var type = subQType || subQTypes[Math.floor(Math.random()*(subQTypes.length-1))+1];
     // console.log(MultiplyNumbers+'-'+type)
     var a = Math.ceil(Math.random()*9)+1, 
         b = Math.ceil(Math.random()*9)+1,
         c = Math.ceil(Math.random()*90)+10;
     var returnable = {QType:MultiplyNumbers+'-'+type}
-    switch (subQTypes[type]) {
+    switch (type) {
         case 'sq': return {...returnable, q:'What is '+a+' squared?', a:''+(a*a)}
         case 'sqEnd5': {
             a = a*10+5;
