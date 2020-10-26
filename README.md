@@ -56,6 +56,33 @@ Clone the repo.
 Then you need to `npm install` in both the root directory (for the server) and in the client directory (for the UI).
 It's easiest to start server and UI from differnt command lines. `npm start` is suitable for both.
 
+### Adding a new topic tot he questions
+* Create a file in the newQs folder (or a subfolder of this) eg: substitution.js
+* this file should export a function that returns a question object, minimum requirement is q and a properties eg:
+```
+export const substitutionQ = (level) => {
+    return {
+        q : 'What is the value of 2x+3 when x = 4 ',
+        a : 11
+    }
+}
+```
+* if the topic is a subtopic, then add a reference to the list of subQtypes for the main topic. eg: in AlgebraQs.js we would add:
+```
+const subQTypes = [
+    null, 'simplifyAddSub', 'expandBracket', 'expand2Simplify', 'factorise1', 'factorise2', 'substitution'
+];
+```
+AlgebraQs also generates a fuller object called qAndA with more properties like: qType, answerFormat and furtherinstructions. 
+* add the case to handle when the qSubType is 'substitution'. This should set newQ to the object returned by our question function. This is later added to the qAndA object.
+
+
+While developing the new topic, I like to set the subQType to that new type so the question type is always selected. Just remember to set it back when finished.
+```
+const subQType = 'substitution' //subType || RandomElement(subQTypes.slice(1));
+```
+Just set it back afterwards!
+
 ## Tech stack
 #### Main app: React and Redux
 #### Backend: Node and Express
