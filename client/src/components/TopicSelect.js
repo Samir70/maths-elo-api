@@ -13,7 +13,10 @@ const TopicSelect = ({ selectedTopics, ToggleTopic, AllTopics, ChangeActiveScree
         >
             <Dropdown.Item onClick={() => ToggleTopic(q.topic)}>all</Dropdown.Item>
             {q.subTopics.map(st =>
-                <Dropdown.Item onClick={() => ToggleTopic(q.topic + '-' + st)}>{st}</Dropdown.Item>
+                <Dropdown.Item
+                    onClick={() => ToggleTopic(q.topic + '-' + st)}
+                    key={st}>{st}
+                </Dropdown.Item>
             )}
         </DropdownButton>
     );
