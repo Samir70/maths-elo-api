@@ -3,6 +3,8 @@
 import { getTheQType } from './QTypes';
 import { RandomElement } from './RandomFuncs';
 
+//This list needs to be in the same as in the QTypes list
+//Maybe refactor so that it is extracted from that
 const subQTypes = [
     null, 'listOfSubTypes'
 ]
