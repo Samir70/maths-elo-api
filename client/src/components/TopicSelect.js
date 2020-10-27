@@ -7,7 +7,8 @@ import { ToggleTopic, AllTopics, ChangeActiveScreen } from '../Reducers/actions'
 const TopicSelect = ({ selectedTopics, ToggleTopic, AllTopics, ChangeActiveScreen }) => {
     const qTypeList = QTypes.map(q =>
         <DropdownButton title={q.topic}
-            variant={selectedTopics.includes(q.topic) ? "success" : "secondary"}
+            variant={selectedTopics.includes(q.topic) ? "success" : 
+                    selectedTopics.findIndex(t => t.startsWith(q.topic)) > -1 ? "warning" : "secondary"}
             key={q.topic}
             className="topicButton"
         >
@@ -15,7 +16,8 @@ const TopicSelect = ({ selectedTopics, ToggleTopic, AllTopics, ChangeActiveScree
             {q.subTopics.map(st =>
                 <Dropdown.Item
                     onClick={() => ToggleTopic(q.topic + '-' + st)}
-                    key={st}>{st}
+                    key={st}
+                    active={selectedTopics.includes(q.topic+'-'+st)}>{st}
                 </Dropdown.Item>
             )}
         </DropdownButton>
