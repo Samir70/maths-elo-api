@@ -26,7 +26,7 @@ export const QTypes = [
     { topic: MultiplyNumbers, subTopics: ['sq', 'cube', 'sqEnd5', 'sqEnd1', 'gridWhole'] },
     { topic: NegNumbers, subTopics: ['adding', 'subtract', 'times', 'divide'] },
     { topic: Decimal, subTopics: ['order', 'round'] },
-    { topic: metricConversion, subTopics: [1, 2, 3, 4, 5, 6, 7] },
+    { topic: metricConversion, subTopics: ['m/cm', 'm/mm', 'km/m', 'g/mg', 'kg/g', 'L/cL', 'L/mL'] },
     { topic: TimeConversion, subTopics: ['secMin', 'secMinHr'] },
     { topic: FactorsMultiples, subTopics: ['prodOfPrimes', 'findMultiple', 'facOrMul', 'hcf', 'lcm', 'numFactors'] },
     { topic: PercentOf, subTopics: ['beginner1', 'beginner2', 'intermediate', 'expert'] },
