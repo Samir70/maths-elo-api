@@ -25,20 +25,22 @@ const TopicSelect = ({ selectedTopics, ToggleTopic, AllTopics, ChangeActiveScree
 
     const furtherInstructions = selectedTopics.length > 0 ?
         <p>When ready: <Button variant="link"
-            onClick={() => ChangeActiveScreen("classRoom-General")}>Go to the classroom</Button>
+            onClick={() => ChangeActiveScreen("classRoom-General")}>Go to the classroom</Button> <br />
+            (If you selct more than five topics, I will pick five of them at random)
         </p> :
-        <p>You need to select at least one topic</p>
+        <p>You need to select at least one topic.</p>
 
     return (
         <div>
             <h2>Select Topics</h2>
-            <p>Topics highlighted in green are active. Click a topic to toggle its status</p>
+            <p>Click a topic to toggle its status. Select subtopics from the dropdown.<br />
+            Topics highlighted in green are entirely active, those in orange have subtopics selected. </p>
             <ButtonGroup>
                 <Button onClick={() => AllTopics('all')} >Select all</Button>
                 <Button onClick={() => AllTopics('none')} >Clear all</Button>
             </ButtonGroup>
             {furtherInstructions}
-            <p>Currently selected are {selectedTopics.join(', ')} </p>
+            <p>Currently selected are: {selectedTopics.join(', ')} </p>
             <div id="topic-list"  >{qTypeList}</div>
         </div>
     )
