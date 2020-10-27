@@ -5,18 +5,19 @@ import TimeConversionQ from './TimeConversion';
 import VocabQ from './VocabQ';
 import RatioQ from './Ratio';
 import Algebra01Q from './AlgebraQ';
+import SolveLinearQ from './AlgebraFuncs/solveLinear';
 import DataQ from './DataQ';
 import DecimalQ from './Decimals';
 import { MultiplyNumberQ } from './NumberOperations';
 import NegNumQ from './NegNumQ';
 import FactorsMultiplesQ from './FactorsMultiples'
 import { PercentOfQ, PercentChangeQ, ReversePercentageQ } from './Percentage';
-import { 
+import {
   metricConversion, TimeConversion, MultiplyNumbers, NegNumbers,
   Decimal, FactorsMultiples,
   PercentOf, PercentChange, ReversePercentage,
-  Vocab, Ratio, Algebra01, Data,
-  QTypes 
+  Vocab, Ratio, Algebra01, Data, SolveLinear,
+  QTypes
 } from './QTypes';
 
 
@@ -27,17 +28,18 @@ export const GetNewQ = (QType, subQType) => {
   switch (type) {
     case metricConversion: { newQ = MetricConversionQ(subQType); break }
     case MultiplyNumbers: { newQ = MultiplyNumberQ(subQType); break }
-    case NegNumbers : { newQ = NegNumQ(subQType); break }
-    case FactorsMultiples : { newQ = FactorsMultiplesQ(subQType); break }
-    case Decimal : { newQ = DecimalQ(subQType); break }
-    case PercentOf : { newQ = PercentOfQ(subQType); break }
-    case PercentChange : { newQ = PercentChangeQ(subQType); break }
-    case ReversePercentage : { newQ = ReversePercentageQ(); break }
+    case NegNumbers: { newQ = NegNumQ(subQType); break }
+    case FactorsMultiples: { newQ = FactorsMultiplesQ(subQType); break }
+    case Decimal: { newQ = DecimalQ(subQType); break }
+    case PercentOf: { newQ = PercentOfQ(subQType); break }
+    case PercentChange: { newQ = PercentChangeQ(subQType); break }
+    case ReversePercentage: { newQ = ReversePercentageQ(); break }
     case TimeConversion: { newQ = TimeConversionQ(subQType); break }
     case Vocab: { newQ = VocabQ(); break }
-    case Ratio: { newQ = RatioQ(subQType); break}
-    case Algebra01: {newQ = Algebra01Q(subQType); break}
-    case Data: {newQ = DataQ(subQType); break}
+    case Ratio: { newQ = RatioQ(subQType); break }
+    case Algebra01: { newQ = Algebra01Q(subQType); break }
+    case SolveLinear: { newQ = SolveLinearQ(subQType); break }
+    case Data: { newQ = DataQ(subQType); break }
     default: return {
       q: "How many mathematicians does it take to change a light bulb?",
       a: "1", QType: 'giveDefault'
