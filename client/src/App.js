@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import Question from './components/Question';
 import ClassRoom from './components/ClassRoom';
 import TopicSelect from './components/TopicSelect';
-import LoginForm from './components/LoginForm';
+// import LoginForm from './components/LoginForm';
 import { ChangeActiveScreen } from './Reducers/actions';
 import './App.css';
 
@@ -16,7 +16,7 @@ const App = ({
   const giveme5Option = <Dropdown.Item onClick={()=>ChangeActiveScreen('classRoom')}>5 in the Classroom</Dropdown.Item>;
   const rateMymathsOption = <Dropdown.Item onClick={()=>ChangeActiveScreen('testRoom')}>Rate My Maths</Dropdown.Item>;
   const selectTopicsOption = <Dropdown.Item onClick={()=>ChangeActiveScreen('topicSelect')} >Select Topics</Dropdown.Item>
-  const loginOption = <Dropdown.Item onClick={()=>ChangeActiveScreen('login')}>Login or Register</Dropdown.Item>;
+  // const loginOption = <Dropdown.Item onClick={()=>ChangeActiveScreen('login')}>Login or Register</Dropdown.Item>;
 
   const userLabel = userName === '' ? 'Guest user' : userName;
 
@@ -26,7 +26,7 @@ const App = ({
       case "classRoom" : return <ClassRoom typeList={[currentQ.QType]} />;
       case "classRoom-General" : return <ClassRoom typeList={selectedTopics} />;
       case "topicSelect" : return <TopicSelect />
-      case "login" : return <LoginForm />;
+      // case "login" : return <LoginForm />;
       default : return <Question />
     }
   }
