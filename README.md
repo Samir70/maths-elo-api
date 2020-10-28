@@ -56,7 +56,9 @@ Clone the repo.
 Then you need to `npm install` in both the root directory (for the server) and in the client directory (for the UI).
 It's easiest to start server and UI from differnt command lines. `npm start` is suitable for both.
 
-### Adding a new topic tot he questions
+### Adding a new topic to the questions
+There is a template in the newQs folder, with instructions. That's the way I do it now. But here are some pointers:
+
 * Create a file in the newQs folder (or a subfolder of this) eg: substitution.js
 * this file should export a function that returns a question object, minimum requirement is q and a properties eg:
 ```
