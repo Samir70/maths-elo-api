@@ -7,6 +7,7 @@ import { oneStep } from './linearQs/oneStep';
 import { twoStep } from './linearQs/twoStep';
 import { bracketQ } from './linearQs/bracketQ';
 import { bothSidesQ } from './linearQs/bothSidesQ';
+import { linearFractionQ } from './linearQs/linearFractionQ';
 
 //This list needs to be in the same as in the QTypes list
 //Maybe refactor so that it is extracted from that
@@ -59,7 +60,14 @@ const SolveLinearQ = (subType) => {
             break;
         }
         case 'fraction': {
-            q = 'x/5 = 5';
+            let fractionType = ['(cx+d) / (ax+b)', '(cx+d) / (b-ax)', '(d-cx) / (b-ax)'][RandomInt(3)];
+            /**
+             * we need top = bottom*r
+             * where bottom can be our (ax + b)
+             * then c and d can be worked out from the ratio
+             */
+            let ratio = RandomInt(9)+2; //can be 2..10
+            q = linearFractionQ(x, coefOfx, constTerm, ratio, fractionType);
             break;
         }
         default: {
