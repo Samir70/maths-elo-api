@@ -9,7 +9,6 @@
  */
 const tidy = (u) => u < 0 ? ' - ' + (-u) : u === 0 ? '' : ' + ' + u
 export const bothSidesQ = (x, coefOfx, constTerm, otherCoef, qType) => {
-    console.log('bothSidesQ handling', x, coefOfx, constTerm, otherCoef, qType)
     switch (qType) {
         case 'ax+b=x+?': {
             let unknown = (coefOfx - 1) * x + constTerm;
