@@ -26,7 +26,7 @@ const TopicSelect = ({ selectedTopics, ToggleTopic, AllTopics, ChangeActiveScree
     const furtherInstructions = selectedTopics.length > 0 ?
         <p>When ready: <Button variant="link"
             onClick={() => ChangeActiveScreen("classRoom-General")}>Go to the classroom</Button> <br />
-            (If you selct more than five topics, I will pick five of them at random)
+            (If you select more than five topics, I will pick five of them at random)
         </p> :
         <p>You need to select at least one topic.</p>
 
