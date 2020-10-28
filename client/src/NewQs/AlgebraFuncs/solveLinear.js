@@ -5,6 +5,7 @@ import { RandomElement } from '../RandomFuncs';
 import { RandomInt } from '../RandomFuncs';
 import { oneStep } from './linearQs/oneStep';
 import { twoStep } from './linearQs/twoStep';
+import { bracketQ } from './linearQs/bracketQ';
 
 //This list needs to be in the same as in the QTypes list
 //Maybe refactor so that it is extracted from that
@@ -29,7 +30,7 @@ const SolveLinearQ = (subType) => {
             let oneStepTypes = ['x+a', 'x-a', 'a-x', 'ax', 'a/x', 'x/a'][RandomInt(6)];
             if (oneStepTypes === 'a/x' && x === 0) { x = 7 }
             if (oneStepTypes === 'x/a') {
-                quAndA.a = constTerm*x;
+                quAndA.a = constTerm * x;
             }
             q = oneStep(x, constTerm, oneStepTypes);
             break;
@@ -40,7 +41,9 @@ const SolveLinearQ = (subType) => {
             break;
         }
         case 'brackets': {
-            q = '3(x+1) = 15';
+            let bracketType = ['c(x+b)', 'c(ax+b)', 'c(ax-b)', 'c(b-ax)'][RandomInt(4)];
+            let outer = RandomInt(9)+2; // can be 2..10
+            q = bracketQ(x, coefOfx, constTerm, outer, bracketType);
             break;
         }
         case 'bothSides': {
