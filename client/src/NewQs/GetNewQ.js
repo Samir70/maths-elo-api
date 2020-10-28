@@ -23,7 +23,7 @@ import {
 
 export const GetNewQ = (QType, subQType) => {
   // console.log('QType and subQType', QType, subQType)
-  var type = QType || QTypes[Math.floor(Math.random() * QTypes.length)];
+  var type = QType || QTypes[Math.floor(Math.random() * QTypes.length)].topic;
   var newQ;
   switch (type) {
     case metricConversion: { newQ = MetricConversionQ(subQType); break }
