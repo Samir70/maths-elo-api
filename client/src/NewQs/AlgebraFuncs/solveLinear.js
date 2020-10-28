@@ -2,6 +2,9 @@
 // and import it into GetNewQs
 import { SolveLinear } from '../QTypes';
 import { RandomElement } from '../RandomFuncs';
+import { combine } from './SimplifyAddSub';
+import { RandomInt } from '../RandomFuncs';
+import { oneStep } from './linearQs/oneStep';
 
 //This list needs to be in the same as in the QTypes list
 //Maybe refactor so that it is extracted from that
@@ -13,41 +16,45 @@ const SolveLinearQ = (subType) => {
     const subQType = subType || RandomElement(subQTypes.slice(1));
     // define the things which are already decieded whatever the returned question
     // consider extraKeys, answerFormat, furtherInstructions
-    var quAndA = { QType: SolveLinear + '-' + subQType };
-    var qA = {};
+    const x = RandomInt(20) - 9; // x can be -9..10
+    // NB: don't want x=0 for random Qs involving divide by x
+    var quAndA = { QType: SolveLinear + '-' + subQType, a: x }; // we already know the value of x
+    // generate question by making an equation.
+    // need following
+    let coefOfx = RandomInt(9) + 2; // can be 2..10
+    let constTerm = RandomInt(24) + 2; // can be 2..25
+    let q = '';
     switch (subQType) {
         case 'oneStep': {
-            qA.q = 'x+1 = 5';
-            qA.a = 4;
+            let qType = ['x+a', 'x-a', 'a-x', 'ax', 'a/x', 'x/a'][RandomInt(6)];
+            if (qType === 'a/x' && x === 0) { x = 7 }
+            if (qType === 'x/a') {
+                quAndA.a = constTerm*x;
+            }
+            q = oneStep(x, constTerm, qType);
             break;
-        } 
+        }
         case 'twoStep': {
-            qA.q = '3x+1 = 5';
-            qA.a = 2;
+            q = '3x+1 = 5';
             break;
-        } 
+        }
         case 'brackets': {
-            qA.q = '3(x+1) = 15';
-            qA.a = 4;
+            q = '3(x+1) = 15';
             break;
-        } 
+        }
         case 'bothSides': {
-            qA.q = '3x+1 = 5x-9';
-            qA.a = 5;
+            q = '3x+1 = 5x-9';
             break;
-        } 
+        }
         case 'fraction': {
-            qA.q = 'x/5 = 5';
-            qA.a = 25;
+            q = 'x/5 = 5';
             break;
-        } 
-        default : {  
-            qA.q = 'default solveLinear Question';
-            qA.a = 42
+        }
+        default: {
+            q = 'default solveLinear Question';
         }
     }
-    quAndA.q = qA.q;
-    quAndA.a = qA.a;
+    quAndA.q = q;
     return quAndA
 }
 
