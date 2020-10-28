@@ -6,6 +6,7 @@ import { RandomInt } from '../RandomFuncs';
 import { oneStep } from './linearQs/oneStep';
 import { twoStep } from './linearQs/twoStep';
 import { bracketQ } from './linearQs/bracketQ';
+import { bothSidesQ } from './linearQs/bothSidesQ';
 
 //This list needs to be in the same as in the QTypes list
 //Maybe refactor so that it is extracted from that
@@ -42,12 +43,19 @@ const SolveLinearQ = (subType) => {
         }
         case 'brackets': {
             let bracketType = ['c(x+b)', 'c(ax+b)', 'c(ax-b)', 'c(b-ax)'][RandomInt(4)];
-            let outer = RandomInt(9)+2; // can be 2..10
+            let outer = RandomInt(9) + 2; // can be 2..10
             q = bracketQ(x, coefOfx, constTerm, outer, bracketType);
             break;
         }
         case 'bothSides': {
-            q = '3x+1 = 5x-9';
+            let bothsSidestype = [
+                'ax+b=x+?', 'x+?=b-ax', 'ax-b=x+?', '?-x=ax+b',
+                'ax+b=cx+?', 'b-ax=cx+?', 'cx+?=b-ax',
+                'c(x+b)=ax+?', 'c(b-x)=ax+?'
+            ][RandomInt(9)];
+            let otherCoef = RandomInt(9) + 2; //can be 2..10
+            if (otherCoef === coefOfx) {otherCoef++}
+            q = bothSidesQ(x, coefOfx, constTerm, otherCoef, bothsSidestype);
             break;
         }
         case 'fraction': {
