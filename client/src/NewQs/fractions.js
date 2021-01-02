@@ -2,7 +2,8 @@
 // and import it into GetNewQs
 import { Fraction } from './QTypes';
 import { RandomElement, RandomInt } from './RandomFuncs';
-import { simplifyQ } from './fractionFuncs/simplifyQ'
+import { simplifyQ } from './fractionFuncs/simplifyQ';
+import { addFracQ } from './fractionFuncs/addFracQ'
 
 //This list needs to be in the same as in the QTypes list
 //Maybe refactor so that it is extracted from that
@@ -22,7 +23,7 @@ const FractionQ = (subType) => {
             qA = simplifyQ(level)
             break
         }
-        case 'add': { qA.q = '1/4 + 1/2'; qA.a = '3/4'; break }
+        case 'add': { qA = addFracQ(1); break }
         case 'times': { qA.q = '1/4 * 1/2'; qA.a = '1/8'; break }
         case 'divide': { qA.q = 'What is 1/4 divided by 1/2 ?'; qA.a = '1/2'; break }
         case 'compare': { qA.q = 'Which is bigger 1/4 or 1/2 ?'; qA.a = '1/2'; break }
