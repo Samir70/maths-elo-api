@@ -12,6 +12,7 @@ export const Algebra01 = 'Algebra01';
 export const SolveLinear = 'SolveLinear';
 export const Data = 'Data';
 export const Decimal = 'Decimal';
+export const Fraction = 'Fraction'
 
 // Aiming for QCodes which the app can parse to produce a new question of the same type
 // but with different numbers.
@@ -28,6 +29,7 @@ export const QTypes = [
     { topic: MultiplyNumbers, subTopics: ['sq', 'cube', 'sqEnd5', 'sqEnd1', 'gridWhole'] },
     { topic: NegNumbers, subTopics: ['adding', 'subtract', 'times', 'divide'] },
     { topic: Decimal, subTopics: ['order', 'round'] },
+    { topic: Fraction, subTopics: ['simplify', 'add', 'times', 'divide', 'compare'] },
     { topic: metricConversion, subTopics: ['m/cm', 'm/mm', 'km/m', 'g/mg', 'kg/g', 'L/cL', 'L/mL'] },
     { topic: TimeConversion, subTopics: ['secMin', 'secMinHr'] },
     { topic: FactorsMultiples, subTopics: ['prodOfPrimes', 'findMultiple', 'facOrMul', 'hcf', 'lcm', 'numFactors'] },

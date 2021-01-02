@@ -8,13 +8,14 @@ import Algebra01Q from './AlgebraQ';
 import SolveLinearQ from './AlgebraFuncs/solveLinear';
 import DataQ from './DataQ';
 import DecimalQ from './Decimals';
+import FractionQ from './fractions';
 import { MultiplyNumberQ } from './NumberOperations';
 import NegNumQ from './NegNumQ';
 import FactorsMultiplesQ from './FactorsMultiples'
 import { PercentOfQ, PercentChangeQ, ReversePercentageQ } from './Percentage';
 import {
   metricConversion, TimeConversion, MultiplyNumbers, NegNumbers,
-  Decimal, FactorsMultiples,
+  Decimal, Fraction, FactorsMultiples,
   PercentOf, PercentChange, ReversePercentage,
   Vocab, Ratio, Algebra01, Data, SolveLinear,
   QTypes
@@ -31,6 +32,7 @@ export const GetNewQ = (QType, subQType) => {
     case NegNumbers: { newQ = NegNumQ(subQType); break }
     case FactorsMultiples: { newQ = FactorsMultiplesQ(subQType); break }
     case Decimal: { newQ = DecimalQ(subQType); break }
+    case Fraction: { newQ = FractionQ(subQType); break }
     case PercentOf: { newQ = PercentOfQ(subQType); break }
     case PercentChange: { newQ = PercentChangeQ(subQType); break }
     case ReversePercentage: { newQ = ReversePercentageQ(); break }
