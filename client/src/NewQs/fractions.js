@@ -16,6 +16,11 @@ const FractionQ = (subType) => {
     var quAndA = { QType: Fraction + '-' + subQType };
     var qA = {};
     switch (subQType) {
+        case 'simplify' : {qA.q = 'Simplify 10/15'; qA.a = '2/3'; break }
+        case 'add' : {qA.q = '1/4 + 1/2'; qA.a = '3/4'; break }
+        case 'times' : {qA.q = '1/4 * 1/2'; qA.a = '1/8'; break }
+        case 'divide' : {qA.q = 'What is 1/4 divided by 1/2 ?'; qA.a = '1/2'; break }
+        case 'compare' : {qA.q = 'Which is bigger 1/4 or 1/2 ?'; qA.a = '1/2'; break }
         default : {  
             qA.q = 'default Fraction Question';
             qA.a = 42
