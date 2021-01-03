@@ -30,7 +30,17 @@ const simulEqsQ = (subType) => {
             While a second shopper buys ${coefx1} teas and ${coefy2} buns. 
             The first shopper pays £${coefx1*x + coefy1*y}, while the second pays £${coefx1*x + coefy2*y}.
             How much does a tea cost?`;
-            qA.a = x;
+            qA.a = '£'+x;
+            break
+        }
+        case 'sameOfOne' : {
+            qA.q = RandomInt(2) === 0 ? 
+                `Solve ${coefx1}T + ${coefy1}B = ${coefx1*x + coefy1*y} 
+                and ${coefx1}T + ${coefy2}B = ${coefx1*x + coefy2*y}` : 
+                `Solve ${coefy1}T + ${coefx1}B = ${coefy1*x + coefx1*y} 
+                and ${coefy2}T + ${coefx1}B = ${coefy2*x + coefx1*y}` 
+
+            qA.a = `T = ${x} and B = ${y}`
             break
         }
         default: {
