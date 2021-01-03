@@ -19,10 +19,8 @@ const simulEqsQ = (subType) => {
     let y = RandomInt(8) + 2; // 2, 3, 4, 5, 6, 7, 8, 9
     if (x === y) { y++ }
     let coefx1 = RandomInt(8) + 2;
-    let coefx2 = RandomInt(8) + 2;
     let coefy1 = RandomInt(8) + 2;
     let coefy2 = RandomInt(8) + 2;
-    if (coefx1 === coefx2) { coefx2++ }
     if (coefy1 === coefy2) { coefy2++ }
     switch (subQType) {
         case 'shopping' : {
@@ -35,12 +33,29 @@ const simulEqsQ = (subType) => {
         }
         case 'sameOfOne' : {
             qA.q = RandomInt(2) === 0 ? 
-                `Solve ${coefx1}T + ${coefy1}B = ${coefx1*x + coefy1*y} 
-                and ${coefx1}T + ${coefy2}B = ${coefx1*x + coefy2*y}` : 
-                `Solve ${coefy1}T + ${coefx1}B = ${coefy1*x + coefx1*y} 
-                and ${coefy2}T + ${coefx1}B = ${coefy2*x + coefx1*y}` 
-
-            qA.a = `T = ${x} and B = ${y}`
+                `Solve ${coefx1}A + ${coefy1}B = ${coefx1*x + coefy1*y} 
+                and ${coefx1}A + ${coefy2}B = ${coefx1*x + coefy2*y}` : 
+                `Solve ${coefy1}A + ${coefx1}B = ${coefy1*x + coefx1*y} 
+                and ${coefy2}A + ${coefx1}B = ${coefy2*x + coefx1*y}` 
+            qA.a = `A = ${x} and B = ${y}`
+            break
+        }
+        case 'negOfOne' : {
+            qA.q = RandomInt(2) === 0 ? 
+                `Solve ${coefx1}A + ${coefy1}B = ${coefx1*x + coefy1*y} 
+                and ${coefy2}B - ${coefx1}A = ${coefy2*y - coefx1*x}` : 
+                `Solve ${coefy1}A - ${coefx1}B = ${coefy1*x - coefx1*y} 
+                and ${coefy2}A + ${coefx1}B = ${coefy2*x + coefx1*y}` 
+            qA.a = `A = ${x} and B = ${y}`
+            break
+        }
+        case 'needsScaling' : {
+            qA.q = RandomInt(2) === 0 ? 
+            `Solve A + B = ${x + y} 
+            and ${coefy2}B - ${coefx1}A = ${coefy2*y - coefx1*x}` : 
+            `Solve 2A + ${coefy1}B = ${2*x + coefy1*y} 
+            and ${coefx1}A + ${coefy2}B = ${coefx1*x + coefy2*y}`
+            qA.a = `A = ${x} and B = ${y}`
             break
         }
         default: {
