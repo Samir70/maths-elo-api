@@ -8,7 +8,7 @@ import { addFracQ } from './fractionFuncs/addFracQ'
 //This list needs to be in the same as in the QTypes list
 //Maybe refactor so that it is extracted from that
 const subQTypes = [
-    null, 'simplify', 'add', 'times', 'divide', 'compare'
+    null, 'simplify', 'addSameDenom', 'addDiffDenom', 'times', 'divide', 'compare'
 ]
 
 const FractionQ = (subType) => {
@@ -23,7 +23,8 @@ const FractionQ = (subType) => {
             qA = simplifyQ(level)
             break
         }
-        case 'add': { qA = addFracQ(1); break }
+        case 'addSameDenom': { qA = addFracQ(1); break }
+        case 'addDiffDenom': { qA = addFracQ(2); break }
         case 'times': { qA.q = '1/4 * 1/2'; qA.a = '1/8'; break }
         case 'divide': { qA.q = 'What is 1/4 divided by 1/2 ?'; qA.a = '1/2'; break }
         case 'compare': { qA.q = 'Which is bigger 1/4 or 1/2 ?'; qA.a = '1/2'; break }

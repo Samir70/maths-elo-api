@@ -29,7 +29,7 @@ export const QTypes = [
     { topic: MultiplyNumbers, subTopics: ['sq', 'cube', 'sqEnd5', 'sqEnd1', 'gridWhole'] },
     { topic: NegNumbers, subTopics: ['adding', 'subtract', 'times', 'divide'] },
     { topic: Decimal, subTopics: ['order', 'round'] },
-    { topic: Fraction, subTopics: ['simplify', 'add', 'times', 'divide', 'compare'] },
+    { topic: Fraction, subTopics: ['simplify', 'addSameDenom', 'addDiffDenom', 'times', 'divide', 'compare'] },
     { topic: metricConversion, subTopics: ['m/cm', 'm/mm', 'km/m', 'g/mg', 'kg/g', 'L/cL', 'L/mL'] },
     { topic: TimeConversion, subTopics: ['secMin', 'secMinHr'] },
     { topic: FactorsMultiples, subTopics: ['prodOfPrimes', 'findMultiple', 'facOrMul', 'hcf', 'lcm', 'numFactors'] },
