@@ -17,7 +17,7 @@ export const addFracQ = (level) => {
         }
         case 2: {
             a = simpFrac(); b = simpFrac();
-            let ans = simplifyFrac([a[0] * b[1] + b[0] * a[1], a[1] * b[1]]);
+            ans = simplifyFrac([a[0] * b[1] + b[0] * a[1], a[1] * b[1]]);
             break
         }
         default: {
