@@ -9,7 +9,8 @@ export const ReversePercentage = 'ReversePercentage';
 export const Vocab = 'Vocab';
 export const Ratio = 'Ratio';
 export const Algebra01 = 'Algebra01';
-export const simulEqs = 'simulEqs'
+export const simulEqs = 'simulEqs';
+export const sequenceQs = 'Sequences'
 export const SolveLinear = 'SolveLinear';
 export const Data = 'Data';
 export const Decimal = 'Decimal';
@@ -26,6 +27,7 @@ export const Fraction = 'Fraction'
 export const QTypes = [
     { topic: Algebra01, subTopics: ['simplifyAddSub', 'expandBracket', 'expand2Simplify', 'factorise1', 'factorise2', 'substitution'] },
     { topic: SolveLinear, subTopics: ['oneStep', 'twoStep', 'brackets', 'bothSides', 'fraction'] },
+    { topic: sequenceQs, subTopics: ['linearSeq', 'geometricSeq', 'quadraticSeq', 'FibonacciSeq'] },
     { topic: simulEqs, subTopics: ['shopping', 'sameOfOne', 'negOfOne', 'needsScaling', 'needsArranging'] },
     { topic: Data, subTopics: ['mean', 'meanFindmissing', 'medianOdd', 'medianEven', 'range', 'mode'] },
     { topic: MultiplyNumbers, subTopics: ['sq', 'cube', 'sqEnd5', 'sqEnd1', 'gridWhole'] },

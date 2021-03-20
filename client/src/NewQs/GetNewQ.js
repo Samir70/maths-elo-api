@@ -7,6 +7,7 @@ import RatioQ from './Ratio';
 import Algebra01Q from './AlgebraQ';
 import simulEqsQ from './simulEqsQ';
 import SolveLinearQ from './AlgebraFuncs/solveLinear';
+import getSequenceQ from './SequenceQs';
 import DataQ from './DataQ';
 import DecimalQ from './Decimals';
 import FractionQ from './fractions';
@@ -18,7 +19,7 @@ import {
   metricConversion, TimeConversion, MultiplyNumbers, NegNumbers,
   Decimal, Fraction, FactorsMultiples,
   PercentOf, PercentChange, ReversePercentage,
-  Vocab, Ratio, Algebra01, simulEqs, Data, SolveLinear,
+  Vocab, Ratio, Algebra01, simulEqs, Data, SolveLinear, sequenceQs,
   QTypes
 } from './QTypes';
 
@@ -42,6 +43,7 @@ export const GetNewQ = (QType, subQType) => {
     case Ratio: { newQ = RatioQ(subQType); break }
     case Algebra01: { newQ = Algebra01Q(subQType); break }
     case SolveLinear: { newQ = SolveLinearQ(subQType); break }
+    case sequenceQs: { newQ = getSequenceQ(subQType); break }
     case simulEqs: { newQ = simulEqsQ(subQType); break }
     case Data: { newQ = DataQ(subQType); break }
     default: return {
