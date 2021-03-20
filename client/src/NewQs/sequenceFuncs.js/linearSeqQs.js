@@ -4,6 +4,7 @@ import { combine } from '../AlgebraFuncs/SimplifyAddSub';
 const rndLinearSeq = n => {
     let d = RandomInt(10) + 2
     let a = RandomInt(30) + 5
+    if (RandomInt(3) === 0) { d *= -1 }
     let seq = [...Array(n).fill(0)].map((_, i) => a + i * d)
     return { seq, a, d }
 }
@@ -18,7 +19,7 @@ export const nextTermLinear = () => {
 
 export const nthTermQ = () => {
     let { seq, a, d } = rndLinearSeq(5)
-    let expression = combine([d, a-d], ['n', ''])
+    let expression = d > 0 ? combine([d, a - d], ['n', '']) : combine([a - d, d], ['', 'n'])
     return {
         q: 'Find the first 5 terms in the sequence with nth term formula: \n' + expression,
         a: seq.join(', ')
