@@ -1,15 +1,17 @@
 // define the QType in QTypes, add to list of QTypes that is exported
 // and import it into GetNewQs
 import { sequenceQs } from './QTypes';
+import { nextTermQ } from './sequenceFuncs.js/nextTermQ';
 import { nextTermLinear, nthTermQ, giveRule, findNthTerm } from './sequenceFuncs.js/linearSeqQs';
 import { nextTermGeometric } from './sequenceFuncs.js/geometricSeqQs';
 import { nextTermFib } from './sequenceFuncs.js/fibonacciSeq';
+import { rnd2StepSeq } from './sequenceFuncs.js/twoStepSeqQs';
 import { RandomElement } from './RandomFuncs';
 
 //This list needs to be in the same as in the QTypes list
 //Maybe refactor so that it is extracted from that
 const subQTypes = [
-    null, 'nextLinear', 'nextGeometric', 'nextFibonacci',
+    null, 'nextLinear', 'nextGeometric', 'nextFibonacci', 'next2Step',
     'giveT2TLinear', 'useNthTerm', 'giveFormula', 'findNthTerm'
 ]
 
@@ -27,6 +29,7 @@ const getSequenceQ = (subType) => {
         case 'findNthTerm': { qA = findNthTerm(); break }
         case 'nextGeometric': { qA = nextTermGeometric(); break }
         case 'nextFibonacci': { qA = nextTermFib(); break }
+        case 'next2Step': { qA = nextTermQ(rnd2StepSeq(6)); break }
         default: {
             qA.q = 'default sequence Question';
             qA.a = 42

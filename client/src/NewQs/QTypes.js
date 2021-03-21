@@ -27,7 +27,7 @@ export const Fraction = 'Fraction'
 export const QTypes = [
     { topic: Algebra01, subTopics: ['simplifyAddSub', 'expandBracket', 'expand2Simplify', 'factorise1', 'factorise2', 'substitution'] },
     { topic: SolveLinear, subTopics: ['oneStep', 'twoStep', 'brackets', 'bothSides', 'fraction'] },
-    { topic: sequenceQs, subTopics: ['nextLinear', 'nextGeometric', 'nextFibonacci', 'giveT2TLinear', 'useNthTerm', 'giveFormula', 'findNthTerm'] },
+    { topic: sequenceQs, subTopics: ['nextLinear', 'nextGeometric', 'nextFibonacci', 'next2Step', 'giveT2TLinear', 'useNthTerm', 'giveFormula', 'findNthTerm'] },
     { topic: simulEqs, subTopics: ['shopping', 'sameOfOne', 'negOfOne', 'needsScaling', 'needsArranging'] },
     { topic: Data, subTopics: ['mean', 'meanFindmissing', 'medianOdd', 'medianEven', 'range', 'mode'] },
     { topic: MultiplyNumbers, subTopics: ['sq', 'cube', 'sqEnd5', 'sqEnd1', 'gridWhole'] },
