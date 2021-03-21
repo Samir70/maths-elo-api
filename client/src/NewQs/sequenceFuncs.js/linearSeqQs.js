@@ -26,7 +26,7 @@ export const nthTermQ = (dir = 'useNth') => {
             a: seq.join(', ')
         } :
         {
-            q: 'Find the nth term formula for \n' + seq.join(', '),
+            q: 'Find an expression for the nth term of: \n' + seq.join(', '),
             a: expression
         }
 }
