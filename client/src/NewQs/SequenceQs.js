@@ -3,6 +3,7 @@
 import { sequenceQs } from './QTypes';
 import { nextTermLinear, nthTermQ, giveRule, findNthTerm } from './sequenceFuncs.js/linearSeqQs';
 import { nextTermGeometric } from './sequenceFuncs.js/geometricSeqQs';
+import { nextTermFib } from './sequenceFuncs.js/fibonacciSeq';
 import { RandomElement } from './RandomFuncs';
 
 //This list needs to be in the same as in the QTypes list
@@ -25,6 +26,7 @@ const getSequenceQ = (subType) => {
         case 'giveFormula': { qA = nthTermQ('findFormula'); break }
         case 'findNthTerm': { qA = findNthTerm(); break }
         case 'nextGeometric': { qA = nextTermGeometric(); break }
+        case 'nextFibonacci': { qA = nextTermFib(); break }
         default: {
             qA.q = 'default sequence Question';
             qA.a = 42
