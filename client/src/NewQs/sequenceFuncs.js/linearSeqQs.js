@@ -20,13 +20,21 @@ export const nextTermLinear = () => {
 export const nthTermQ = (dir = 'useNth') => {
     let { seq, a, d } = rndLinearSeq(5)
     let expression = d > 0 ? combine([d, a - d], ['n', '']) : combine([a - d, d], ['', 'n'])
-    return dir === 'useNth' ? 
-    {
-        q: 'Find the first 5 terms in the sequence with nth term formula: \n' + expression,
-        a: seq.join(', ')
-    } :
-    {
-        q: 'Find the nth term formula for \n'+seq.join(', '),
-        a : expression
+    return dir === 'useNth' ?
+        {
+            q: 'Find the first 5 terms in the sequence with nth term formula: \n' + expression,
+            a: seq.join(', ')
+        } :
+        {
+            q: 'Find the nth term formula for \n' + seq.join(', '),
+            a: expression
+        }
+}
+
+export const giveRule = () => {
+    let { seq, a, d } = rndLinearSeq(5);
+    return {
+        q: 'What is the term-to-term rule for \n' + seq.join(', '),
+        a: d > 0 ? 'add ' + d : 'take ' + (-d)
     }
 }

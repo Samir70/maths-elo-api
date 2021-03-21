@@ -1,7 +1,7 @@
 // define the QType in QTypes, add to list of QTypes that is exported
 // and import it into GetNewQs
 import { sequenceQs } from './QTypes';
-import { nextTermLinear, nthTermQ } from './sequenceFuncs.js/linearSeqQs';
+import { nextTermLinear, nthTermQ, giveRule } from './sequenceFuncs.js/linearSeqQs';
 import { RandomElement } from './RandomFuncs';
 
 //This list needs to be in the same as in the QTypes list
@@ -19,6 +19,7 @@ const getSequenceQ = (subType) => {
     var qA = {};
     switch (subQType) {
         case 'nextLinear': { qA = nextTermLinear(); break }
+        case 'giveT2TLinear': { qA = giveRule(); break }
         case 'useNthTerm': { qA = nthTermQ(); break }
         case 'giveNthTerm': { qA = nthTermQ('findFormula'); break }
         default: {
