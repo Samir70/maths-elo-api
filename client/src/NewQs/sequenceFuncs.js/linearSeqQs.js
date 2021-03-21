@@ -17,11 +17,16 @@ export const nextTermLinear = () => {
     }
 }
 
-export const nthTermQ = () => {
+export const nthTermQ = (dir = 'useNth') => {
     let { seq, a, d } = rndLinearSeq(5)
     let expression = d > 0 ? combine([d, a - d], ['n', '']) : combine([a - d, d], ['', 'n'])
-    return {
+    return dir === 'useNth' ? 
+    {
         q: 'Find the first 5 terms in the sequence with nth term formula: \n' + expression,
         a: seq.join(', ')
+    } :
+    {
+        q: 'Find the nth term formula for \n'+seq.join(', '),
+        a : expression
     }
 }
