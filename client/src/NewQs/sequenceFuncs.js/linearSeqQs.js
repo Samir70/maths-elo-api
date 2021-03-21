@@ -38,3 +38,20 @@ export const giveRule = () => {
         a: d > 0 ? 'add ' + d : 'take ' + (-d)
     }
 }
+
+export const findNthTerm = () => {
+    let { seq, a, d } = rndLinearSeq(5);
+    let n = RandomInt(300) + 54;
+    let nth = a + d * (n - 1)
+    let extra;
+    switch (n % 10) {
+        case 1: { extra = 'st'; break }
+        case 2: { extra = 'nd'; break }
+        case 3: { extra = 'rd'; break }
+        default: { extra = 'th' }
+    }
+    return {
+        q: 'Find the ' + n + extra + ' term in: \n' + seq.join(', '),
+        a: nth
+    }
+}
