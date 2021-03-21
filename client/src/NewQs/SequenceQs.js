@@ -8,7 +8,7 @@ import { RandomElement } from './RandomFuncs';
 //Maybe refactor so that it is extracted from that
 const subQTypes = [
     null, 'nextLinear', 'nextGeometric', 'nextGeometric', 'nextFibonacci',
-    'giveT2TLinear', 'useNthTerm', 'giveNthTerm'
+    'giveT2TLinear', 'useNthTerm', 'giveFormula', 'findNthTerm'
 ]
 
 const getSequenceQ = (subType) => {
@@ -21,7 +21,7 @@ const getSequenceQ = (subType) => {
         case 'nextLinear': { qA = nextTermLinear(); break }
         case 'giveT2TLinear': { qA = giveRule(); break }
         case 'useNthTerm': { qA = nthTermQ(); break }
-        case 'giveNthTerm': { qA = nthTermQ('findFormula'); break }
+        case 'giveFormula': { qA = nthTermQ('findFormula'); break }
         default: {
             qA.q = 'default sequence Question';
             qA.a = 42
